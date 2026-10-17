@@ -1,284 +1,1374 @@
+
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth dark">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUSTAKA TIGA ZAMAN - Portal Sejarah & Edukasi PSHWTM</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            400: '#F5C242',
-                            500: '#E5A920',
-                            600: '#D4AF37',
-                            700: '#B8860B',
-                        },
-                        darkbg: {
-                            900: '#121212',
-                            800: '#1A1A1A',
-                            700: '#262626',
-                            600: '#333333'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
-                        sans: ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #121212; }
-        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #E5A920; }
-        
-        .article-content p { margin-bottom: 1.25rem; line-height: 1.85; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173c2c">
 
-        /* Reader Text Sizing */
-        .text-size-sm .article-body { font-size: 1rem; }
-        .text-size-md .article-body { font-size: 1.15rem; }
-        .text-size-lg .article-body { font-size: 1.35rem; }
+  <title>PUSTAKA TIGA ZAMAN | Sejarah & Edukasi PSHWTM</title>
+  <meta name="description" content="Portal sejarah, budaya, dokumentasi, dan edukasi Persaudaraan Setia Hati Winongo Tunas Muda.">
+  <meta name="keywords" content="Pustaka Tiga Zaman, PSHWTM, PSHW-TM, Setia Hati Winongo, sejarah, budaya">
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
-    </style>
+  <style>
+    :root {
+      --bg: #f4f5f0;
+      --surface: #ffffff;
+      --text: #202b24;
+      --muted: #66736a;
+      --primary: #173c2c;
+      --primary-2: #24573e;
+      --accent: #d7b75a;
+      --border: #dfe5dd;
+      --shadow: 0 8px 28px rgba(20, 45, 30, .09);
+    }
+
+    body.dark {
+      --bg: #111914;
+      --surface: #1b2820;
+      --text: #edf2ed;
+      --muted: #b0bdb3;
+      --primary: #b4d2bc;
+      --primary-2: #d2e6d6;
+      --accent: #e2c56b;
+      --border: #34463a;
+      --shadow: 0 8px 28px rgba(0, 0, 0, .22);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      transition: background .2s, color .2s;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    button, select { cursor: pointer; }
+
+    button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(1120px, 92%);
+      margin-inline: auto;
+    }
+
+    .topbar {
+      background: var(--primary);
+      color: #fff;
+      padding: 9px 0;
+      font-size: 12px;
+      letter-spacing: .5px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: #fff;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .brand-name {
+      display: block;
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .brand-sub {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn:hover { border-color: var(--accent); }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    body.dark .btn-primary {
+      color: #132218;
+    }
+
+    .hero {
+      background:
+        radial-gradient(ellipse at 85% 20%, rgba(215,183,90,.22), transparent 34%),
+        linear-gradient(135deg, #102b20, #24573e);
+      color: #fff;
+      padding: 64px 0 56px;
+    }
+
+    .hero-content { max-width: 760px; }
+
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -.8px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #e2ebe4;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero .btn {
+      background: var(--accent);
+      color: #17271b;
+      border-color: var(--accent);
+    }
+
+    .hero .btn-outline {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,.5);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: -24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      border-radius: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      color: var(--primary);
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    main { padding: 44px 0 64px; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(23px, 3vw, 30px);
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) 220px;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .field {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      box-shadow: 0 3px 12px rgba(0,0,0,.025);
+    }
+
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      transition: .2s;
+    }
+
+    .article-art {
+      height: 155px;
+      background:
+        radial-gradient(circle at 80% 25%, rgba(215,183,90,.25), transparent 25%),
+        linear-gradient(135deg, #173c2c, #397052);
+      color: #fff;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-art::after {
+      content: "PTZ";
+      position: absolute;
+      right: 12px;
+      top: -16px;
+      font-size: 90px;
+      font-weight: 900;
+      opacity: .08;
+      letter-spacing: -8px;
+    }
+
+    .article-art span {
+      z-index: 1;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.4);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .article-content {
+      padding: 17px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .article-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .article-content h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .article-content p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 16px;
+      flex: 1;
+    }
+
+    .article-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .article-actions .btn { padding: 7px 9px; }
+
+    .empty-state {
+      text-align: center;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 35px 15px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .about {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      margin-top: 50px;
+    }
+
+    .about h2 { margin-top: 0; }
+
+    .about p { color: var(--muted); }
+
+    footer {
+      background: #10271d;
+      color: #e7eee8;
+      padding: 28px 0;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.58);
+      z-index: 100;
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 16px;
+      width: min(760px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      z-index: 2;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .modal-body { padding: 20px; }
+
+    .article-body { overflow-wrap: anywhere; }
+
+    .article-body h3 { margin-top: 24px; }
+
+    .article-body p { margin: 0 0 15px; }
+
+    .article-body ul { padding-left: 22px; }
+
+    .modal-close {
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 25px;
+      line-height: 1;
+      padding: 3px 7px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover { background: var(--bg); }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100dvh;
+      width: min(420px, 92vw);
+      background: var(--surface);
+      color: var(--text);
+      z-index: 110;
+      box-shadow: var(--shadow);
+      transform: translateX(105%);
+      transition: transform .22s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      padding: 17px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drawer-header h2 { margin: 0; font-size: 20px; }
+
+    .drawer-content {
+      padding: 17px;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .saved-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .saved-item h3 {
+      font-size: 15px;
+      margin: 0 0 5px;
+    }
+
+    .saved-item p {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 0 0 10px;
+    }
+
+    .saved-item-actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .note-card {
+      border-left: 3px solid var(--accent);
+      padding: 10px 12px;
+      background: var(--bg);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .note-card p { margin: 5px 0; white-space: pre-wrap; }
+
+    .note-card small { color: var(--muted); }
+
+    .note-form {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .note-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 200;
+      background: #173c2c;
+      color: white;
+      padding: 11px 16px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: .2s;
+      max-width: 90vw;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .muted { color: var(--muted); }
+
+    @media (max-width: 800px) {
+      .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .brand-sub { display: none; }
+      .navbar { min-height: 68px; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: 92%; }
+      .navbar { align-items: center; }
+      .brand-mark { width: 40px; height: 40px; flex-basis: 40px; }
+      .brand-name { font-size: 14px; }
+      .nav-actions { gap: 5px; }
+      .nav-actions .btn { padding: 8px; font-size: 12px; }
+      .hero { padding: 45px 0 48px; }
+      .hero p { font-size: 14px; }
+      .stats { gap: 8px; }
+      .stat { padding: 12px 9px; }
+      .stat strong { font-size: 20px; }
+      .stat span { font-size: 10px; }
+      main { padding-top: 35px; }
+      .filters { grid-template-columns: 1fr; }
+      .article-grid { grid-template-columns: 1fr; }
+      .article-art { height: 135px; }
+      .about { padding: 20px; }
+      .overlay { padding: 10px; }
+      .modal { max-height: 94vh; }
+      .modal-body { padding: 16px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-darkbg-900 dark:text-gray-100 font-sans transition-colors duration-300 min-h-screen flex flex-col selection:bg-gold-500 selection:text-darkbg-900">
 
-    <!-- Top Sticky Header -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-darkbg-800/90 backdrop-blur-md border-b border-gray-200 dark:border-darkbg-700 transition-colors">
-        <div id="progressBar" class="h-1 bg-gold-500 w-0 transition-all duration-150"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo & Title -->
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-xl bg-gold-500 flex items-center justify-center text-darkbg-900 font-bold text-xl shadow-lg shadow-gold-500/20">
-                        <i class="fa-solid fa-scroll pointer-events-none"></i>
-                    </div>
-                    <div>
-                        <a href="#" class="text-xl font-bold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
-                            PUSTAKA <span class="text-gold-500 font-serif italic">TIGA ZAMAN</span>
-                        </a>
-                        <p class="text-xs text-gold-600 dark:text-gold-400 font-medium">
-                            <i class="fa-solid fa-book-bookmark me-1"></i> Dokumentasi Sejarah & Ajaran PSHWTM
-                        </p>
-                    </div>
-                </div>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI</span>
+      <span>Portal Sejarah dan Edukasi</span>
+    </div>
+  </div>
 
-                <!-- Desktop Search -->
-                <div class="hidden md:flex flex-1 max-w-md mx-8">
-                    <div class="relative w-full">
-                        <input type="text" id="searchInput" placeholder="Cari sejarah, tokoh, ajaran, atau falsafah..." 
-                            class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-darkbg-600 bg-gray-100 dark:bg-darkbg-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 pointer-events-none"></i>
-                    </div>
-                </div>
+  <header>
+    <div class="container navbar">
+      <a class="brand" href="#" aria-label="Beranda Pustaka Tiga Zaman">
+        <span class="brand-mark">PTZ</span>
+        <span>
+          <span class="brand-name">PUSTAKA TIGA ZAMAN</span>
+          <span class="brand-sub">Portal Sejarah &amp; Edukasi PSHWTM</span>
+        </span>
+      </a>
 
-                <!-- Personal Controls -->
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <button data-action="open-drawer" data-target="bookmarksDrawer" class="relative p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700 cursor-pointer" title="Daftar Baca Nanti">
-                        <i class="fa-solid fa-bookmark text-lg pointer-events-none"></i>
-                        <span id="bookmarkBadge" class="absolute -top-1 -right-1 bg-gold-500 text-darkbg-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center hidden pointer-events-none">0</span>
-                    </button>
+      <nav class="nav-actions" aria-label="Menu utama">
+        <button class="btn" type="button" data-action="open-bookmarks">
+          ♡ <span>Arsip</span> <span id="bookmark-count">0</span>
+        </button>
+        <button class="btn" type="button" data-action="open-notes">✎ Catatan</button>
+        <button class="btn" type="button" data-action="toggle-theme" id="theme-button" aria-label="Ubah tema">☾</button>
+      </nav>
+    </div>
+  </header>
 
-                    <button data-action="open-drawer" data-target="notesDrawer" class="relative p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700 cursor-pointer" title="Catatan Refleksi">
-                        <i class="fa-solid fa-note-sticky text-lg pointer-events-none"></i>
-                        <span id="notesBadge" class="absolute -top-1 -right-1 bg-gold-500 text-darkbg-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center hidden pointer-events-none">0</span>
-                    </button>
-
-                    <button data-action="toggle-theme" class="p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700 cursor-pointer" title="Ubah Mode Tampilan">
-                        <i class="fa-solid fa-moon text-lg dark:hidden pointer-events-none"></i>
-                        <i class="fa-solid fa-sun text-lg hidden dark:block text-gold-400 pointer-events-none"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Search Bar -->
-            <div class="pb-4 md:hidden">
-                <div class="relative w-full">
-                    <input type="text" id="mobileSearchInput" placeholder="Cari artikel sejarah PSHWTM..." 
-                        class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-darkbg-600 bg-gray-100 dark:bg-darkbg-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 pointer-events-none"></i>
-                </div>
-            </div>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="eyebrow">Dokumentasi • Literasi • Pelestarian</span>
+        <h1>Merawat Sejarah,<br>Menjaga Warisan.</h1>
+        <p>
+          Ruang baca digital untuk menelusuri sejarah, nilai persaudaraan,
+          budaya, dan perjalanan generasi. Belajar dari masa lalu untuk
+          menata masa depan.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn" href="#koleksi">Jelajahi Koleksi ↓</a>
+          <a class="btn btn-outline" href="#tentang">Tentang Pustaka</a>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Filter Categories -->
-        <div class="border-t border-gray-200 dark:border-darkbg-700 bg-gray-50/50 dark:bg-darkbg-900/50 overflow-x-auto">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 py-3 text-sm font-medium">
-                <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold mr-2 flex items-center gap-1">
-                    <i class="fa-solid fa-filter text-gold-500 pointer-events-none"></i> Kategori:
-                </span>
-                <button data-action="filter-cat" data-category="semua" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gold-500 text-darkbg-900 font-semibold shadow-sm cursor-pointer">Semua</button>
-                <button data-action="filter-cat" data-category="Jejak Sejarah" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500 cursor-pointer">📜 Jejak Sejarah</button>
-                <button data-action="filter-cat" data-category="Silsilah & Tokoh" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500 cursor-pointer">👑 Silsilah & Tokoh</button>
-                <button data-action="filter-cat" data-category="Falsafah & Ajaran" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500 cursor-pointer">🪶 Falsafah & Ajaran</button>
-                <button data-action="filter-cat" data-category="Warisan Budaya" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500 cursor-pointer">🌱 Warisan Budaya</button>
-            </div>
+  <div class="container stats" aria-label="Statistik koleksi">
+    <div class="stat">
+      <strong id="stat-articles">0</strong>
+      <span>Artikel tersedia</span>
+    </div>
+    <div class="stat">
+      <strong id="stat-bookmarks">0</strong>
+      <span>Arsip tersimpan</span>
+    </div>
+    <div class="stat">
+      <strong id="stat-notes">0</strong>
+      <span>Catatan pribadi</span>
+    </div>
+  </div>
+
+  <main class="container">
+    <section id="koleksi">
+      <div class="section-heading">
+        <div>
+          <h2>Koleksi Pustaka</h2>
+          <p>Telusuri tulisan berdasarkan judul, topik, atau kategori.</p>
         </div>
-    </header>
+        <span class="muted" id="result-count" aria-live="polite">0 artikel</span>
+      </div>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+      <div class="filters">
+        <input
+          class="field"
+          id="search-input"
+          type="search"
+          placeholder="Cari sejarah, tokoh, budaya..."
+          aria-label="Cari artikel"
+        >
 
-        <!-- Dashboard Stats -->
-        <section class="bg-gradient-to-r from-darkbg-800 via-darkbg-900 to-darkbg-800 border border-gold-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 text-gold-500/5 text-9xl font-serif pointer-events-none">
-                <i class="fa-solid fa-yin-yang"></i>
+        <select class="field" id="category-filter" aria-label="Pilih kategori">
+          <option value="Semua">Semua kategori</option>
+          <option value="Sejarah">Sejarah</option>
+          <option value="Tokoh">Tokoh</option>
+          <option value="Nilai dan Falsafah">Nilai dan Falsafah</option>
+          <option value="Budaya">Budaya</option>
+          <option value="Dokumentasi">Dokumentasi</option>
+        </select>
+      </div>
+
+      <div class="article-grid" id="article-grid"></div>
+    </section>
+
+    <section class="about" id="tentang">
+      <h2>Tentang Pustaka Tiga Zaman</h2>
+      <p>
+        Pustaka Tiga Zaman merupakan ruang dokumentasi dan literasi untuk
+        merawat jejak sejarah, nilai budaya, serta warisan antargenerasi,
+        khususnya yang berkaitan dengan Persaudaraan Setia Hati Winongo
+        Tunas Muda (PSHWTM).
+      </p>
+      <p>
+        Informasi sejarah perlu dibaca secara kritis. Bedakan sumber primer,
+        kesaksian, interpretasi, dan informasi yang belum terverifikasi.
+        Hormati tokoh, tradisi, dan pihak-pihak yang menjadi bagian dari
+        sejarah.
+      </p>
+      <p class="muted">
+        Catatan: artikel contoh di situs ini merupakan konten awal. Lengkapi
+        dan verifikasi dengan sumber dokumentasi yang dapat dipertanggungjawabkan.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>PUSTAKA TIGA ZAMAN</strong><br>
+        Jejak Sejarah • Nilai Budaya • Warisan Generasi
+      </div>
+      <div>© <span id="current-year"></span> Pustaka Tiga Zaman</div>
+    </div>
+  </footer>
+
+  <!-- Modal pembaca artikel -->
+  <div class="overlay" id="article-overlay" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <div>
+          <div class="article-meta" id="modal-meta"></div>
+          <h2 id="modal-title">Judul artikel</h2>
+        </div>
+        <button class="modal-close" type="button" data-action="close-article" aria-label="Tutup artikel">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="article-body" id="modal-body"></div>
+        <hr style="border:0;border-top:1px solid var(--border);margin:22px 0">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-primary" id="modal-bookmark" type="button" data-action="toggle-current-bookmark">♡ Simpan arsip</button>
+          <button class="btn" type="button" data-action="note-current-article">✎ Buat catatan</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Panel arsip tersimpan -->
+  <aside class="drawer" id="bookmarks-drawer" aria-label="Arsip tersimpan" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>Arsip Tersimpan</h2>
+      <button class="modal-close" type="button" data-action="close-bookmarks" aria-label="Tutup arsip">×</button>
+    </div>
+    <div class="drawer-content" id="bookmarks-list"></div>
+  </aside>
+
+  <!-- Panel catatan -->
+  <aside class="drawer" id="notes-drawer" aria-label="Catatan pribadi" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>Catatan Pribadi</h2>
+      <button class="modal-close" type="button" data-action="close-notes" aria-label="Tutup catatan">×</button>
+    </div>
+    <div class="drawer-content">
+      <form class="note-form" id="note-form">
+        <label for="note-title"><strong>Judul catatan</strong></label>
+        <input class="field" id="note-title" maxlength="120" placeholder="Misalnya: Sumber sejarah..." required>
+
+        <label for="note-text"><strong>Isi catatan</strong></label>
+        <textarea class="field" id="note-text" maxlength="5000" placeholder="Tulis catatan atau referensi di sini..." required></textarea>
+
+        <button class="btn btn-primary" type="submit">Simpan catatan</button>
+      </form>
+      <h3>Catatan tersimpan</h3>
+      <div id="notes-list"></div>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    /*
+      KONTEN AWAL:
+  
+      */
+    
+    const articles = [
+      {
+        id: 1,
+        title: "Mengenal Pustaka Tiga Zaman",
+        category: "Dokumentasi",
+        date: "18 Oktober 2026",
+        excerpt: "Mengenal tujuan dokumentasi sejarah, nilai budaya, dan warisan generasi.",
+        content: `
+          <p>Pustaka Tiga Zaman dibangun sebagai ruang literasi dan dokumentasi yang
+          menghubungkan jejak masa lalu, pemahaman masa kini, dan tanggung jawab
+          kepada generasi mendatang.</p>
+          <h3>Tiga landasan dokumentasi</h3>
+          <ul>
+            <li><strong>Jejak sejarah:</strong> menghimpun catatan, dokumen, foto, dan kesaksian.</li>
+            <li><strong>Nilai budaya:</strong> memahami makna tradisi secara bijaksana dan kontekstual.</li>
+            <li><strong>Warisan generasi:</strong> menyampaikan pengetahuan dengan sumber yang dapat ditelusuri.</li>
+          </ul>
+          <p>Setiap informasi perlu diperiksa sumber dan konteksnya. Apabila suatu
+          bagian masih berupa dugaan atau kesaksian, status tersebut perlu
+          dijelaskan kepada pembaca.</p>`
+      },
+      {
+        id: 2,
+        title: "Mengenal PSHWTM",
+        category: "Sejarah",
+        date: "18 Oktober 2026",
+        excerpt: "Pengantar mengenai Persaudaraan Setia Hati Winongo Tunas Muda dan pentingnya literasi sejarah.",
+        content: `
+          <p>PSHWTM merupakan singkatan dari Persaudaraan Setia Hati Winongo
+          Tunas Muda. Pembahasan mengenai perjalanan dan perkembangannya perlu
+          merujuk pada dokumen, arsip, kesaksian pelaku, serta sumber lain yang
+          dapat diuji.</p>
+          <h3>Membaca sejarah dengan cermat</h3>
+          <p>Nama, tanggal, peristiwa, dan peran tokoh sebaiknya diperiksa
+          melalui lebih dari satu sumber jika memungkinkan. Perbedaan kesaksian
+          perlu dicatat secara proporsional, bukan langsung dianggap sebagai
+          kepastian.</p>
+          <p>Artikel ini merupakan pengantar umum, bukan kronologi resmi atau
+          pengganti dokumen organisasi.</p>`
+      },
+      {
+        id: 3,
+        title: "Tokoh dan Jejak Pengabdian",
+        category: "Tokoh",
+        date: "18 Oktober 2026",
+        excerpt: "Cara mendokumentasikan biografi tokoh dengan menghormati sumber dan konteks sejarah.",
+        content: `
+          <p>Biografi tokoh merupakan salah satu cara menjaga ingatan kolektif.
+          Penulis perlu membedakan data biografis, kesaksian langsung,
+          pemberitaan, dan interpretasi yang berkembang kemudian.</p>
+          <h3>Unsur penting biografi</h3>
+          <ul>
+            <li>Nama dan riwayat hidup berdasarkan sumber yang dapat diperiksa.</li>
+            <li>Peran dan pengabdian dengan konteks waktu yang jelas.</li>
+            <li>Dokumen pendukung, foto, surat, atau kesaksian yang relevan.</li>
+            <li>Catatan apabila terdapat perbedaan versi atau data yang belum pasti.</li>
+          </ul>
+          <p>Penghormatan kepada tokoh dapat berjalan bersama sikap kritis
+          terhadap sumber sejarah.</p>`
+      },
+      {
+        id: 4,
+        title: "Persaudaraan dan Tanggung Jawab Sosial",
+        category: "Nilai dan Falsafah",
+        date: "18 Oktober 2026",
+        excerpt: "Memaknai persaudaraan sebagai sikap saling menghormati dan bertanggung jawab.",
+        content: `
+          <p>Persaudaraan tidak hanya tercermin dalam ikatan, tetapi juga
+          dalam perilaku sehari-hari: menjaga ucapan, menghormati sesama,
+          mengendalikan diri, dan ikut menciptakan lingkungan yang tenteram.</p>
+          <h3>Nilai dalam kehidupan sehari-hari</h3>
+          <ul>
+            <li>Mengutamakan dialog saat terjadi perbedaan.</li>
+            <li>Menghindari provokasi dan penyebaran kabar yang belum terverifikasi.</li>
+            <li>Menjaga martabat orang lain dalam ruang publik maupun digital.</li>
+            <li>Mengutamakan manfaat bagi masyarakat.</li>
+          </ul>
+          <p>Nilai persaudaraan semakin bermakna ketika diwujudkan dalam
+          tindakan yang bertanggung jawab.</p>`
+      },
+      {
+        id: 5,
+        title: "Tradisi sebagai Warisan Budaya",
+        category: "Budaya",
+        date: "18 Oktober 2026",
+        excerpt: "Pentingnya memahami tradisi melalui konteks, pelaku, dan sumber yang tepat.",
+        content: `
+          <p>Tradisi menyimpan pengalaman dan pengetahuan yang diwariskan
+          dari satu generasi ke generasi berikutnya. Memahaminya membutuhkan
+          perhatian pada konteks sejarah, masyarakat pendukung, serta makna
+          yang dijelaskan oleh pelakunya.</p>
+          <h3>Dokumentasi yang bertanggung jawab</h3>
+          <p>Tidak semua unsur tradisi harus dibuka ke ruang publik. Penulis
+          perlu menghormati batas-batas yang ditetapkan pemilik tradisi,
+          terutama apabila menyangkut hal yang bersifat pribadi atau sakral.</p>
+          <p>Foto, istilah, dan penjelasan sebaiknya digunakan dengan izin
+          yang sesuai serta keterangan yang tidak menyesatkan.</p>`
+      },
+      {
+        id: 6,
+        title: "Memeriksa Sumber Sejarah",
+        category: "Dokumentasi",
+        date: "18 Oktober 2026",
+        excerpt: "Panduan awal untuk membedakan dokumen primer, kesaksian, dan interpretasi.",
+        content: `
+          <p>Penelusuran sejarah akan lebih kuat apabila sumbernya dicatat
+          dengan jelas. Sebuah cerita yang sering diulang belum tentu
+          otomatis menjadi fakta yang terverifikasi.</p>
+          <h3>Langkah pemeriksaan</h3>
+          <ul>
+            <li>Catat judul dokumen, penulis, tanggal, dan tempat penerbitan.</li>
+            <li>Periksa apakah sumber merupakan dokumen sezaman atau tulisan kemudian.</li>
+            <li>Bandingkan dengan sumber independen lain.</li>
+            <li>Jelaskan bagian yang masih belum dapat dipastikan.</li>
+            <li>Simpan salinan dan keterangan asal dokumen sesuai ketentuan.</li>
+          </ul>
+          <p>Dengan cara ini, dokumentasi dapat menjadi bahan belajar yang
+          berguna dan dapat ditinjau kembali.</p>`
+      }
+    ];
+
+    const STORAGE_KEYS = {
+      bookmarks: "ptz_bookmarks_v1",
+      notes: "ptz_notes_v1",
+      theme: "ptz_theme_v1"
+    };
+
+    let currentArticleId = null;
+    let toastTimer = null;
+
+    function readStorage(key, fallback) {
+      try {
+        const value = localStorage.getItem(key);
+        return value === null ? fallback : JSON.parse(value);
+      } catch (error) {
+        console.warn("Data lokal tidak dapat dibaca:", key, error);
+        return fallback;
+      }
+    }
+
+    function writeStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+      } catch (error) {
+        console.warn("Data lokal tidak dapat disimpan:", key, error);
+        showToast("Penyimpanan browser tidak tersedia atau penuh.");
+        return false;
+      }
+    }
+
+    function getBookmarks() {
+      const data = readStorage(STORAGE_KEYS.bookmarks, []);
+      return Array.isArray(data) ? data.filter(Number.isFinite) : [];
+    }
+
+    function getNotes() {
+      const data = readStorage(STORAGE_KEYS.notes, []);
+      return Array.isArray(data) ? data : [];
+    }
+
+    function findArticle(id) {
+      return articles.find(article => article.id === Number(id));
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[character]);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    function updateStats() {
+      document.getElementById("stat-articles").textContent = articles.length;
+      document.getElementById("stat-bookmarks").textContent = getBookmarks().length;
+      document.getElementById("stat-notes").textContent = getNotes().length;
+      document.getElementById("bookmark-count").textContent = getBookmarks().length;
+    }
+
+    function renderArticles() {
+      const search = document.getElementById("search-input").value
+        .trim().toLocaleLowerCase("id");
+      const category = document.getElementById("category-filter").value;
+      const saved = getBookmarks();
+
+      const filtered = articles.filter(article => {
+        const matchesCategory = category === "Semua" || article.category === category;
+        const searchable = [
+          article.title,
+          article.category,
+          article.excerpt,
+          article.content
+        ].join(" ").toLocaleLowerCase("id");
+
+        return matchesCategory && searchable.includes(search);
+      });
+
+      document.getElementById("result-count").textContent =
+        filtered.length + (filtered.length === 1 ? " artikel" : " artikel");
+
+      const grid = document.getElementById("article-grid");
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <strong>Artikel tidak ditemukan.</strong>
+            <p>Coba kata kunci lain atau pilih kategori berbeda.</p>
+            <button class="btn" type="button" data-action="reset-filters">Reset pencarian</button>
+          </div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(article => {
+        const isSaved = saved.includes(article.id);
+
+        return `
+          <article class="article-card">
+            <div class="article-art">
+              <span>${escapeHTML(article.category)}</span>
             </div>
-
-            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-widest">
-                        <i class="fa-solid fa-shield-halved pointer-events-none"></i> Pustaka Edukasi History & Culture
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl font-bold font-serif text-white">
-                        Menelusuri Jejak Persaudaraan Setia Hati Winongo Tunas Muda
-                    </h2>
-                    <p class="text-xs sm:text-sm text-gray-400 max-w-xl">
-                        Aplikasi literasi digital untuk memelajari rekam jejak sejarah, silsilah para sesepuh, dan keluhuran falsafah ajaran Setia Hati.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-3 gap-3 sm:gap-4 w-full lg:w-auto">
-                    <div class="bg-darkbg-700/70 border border-gold-500/20 p-3 sm:p-4 rounded-2xl text-center space-y-1">
-                        <span class="text-xs text-gray-400 block">Dibaca</span>
-                        <span id="statReadCount" class="text-xl sm:text-2xl font-bold text-gold-400">0</span>
-                        <span class="text-[10px] text-gray-500 block">Artikel</span>
-                    </div>
-                    <div class="bg-darkbg-700/70 border border-gold-500/20 p-3 sm:p-4 rounded-2xl text-center space-y-1">
-                        <span class="text-xs text-gray-400 block">Total Waktu</span>
-                        <span id="statReadMinutes" class="text-xl sm:text-2xl font-bold text-gold-400">0</span>
-                        <span class="text-[10px] text-gray-500 block">Menit Baca</span>
-                    </div>
-                    <div class="bg-darkbg-700/70 border border-gold-500/20 p-3 sm:p-4 rounded-2xl text-center space-y-1">
-                        <span class="text-xs text-gray-400 block">Catatan</span>
-                        <span id="statNotesCount" class="text-xl sm:text-2xl font-bold text-gold-400">0</span>
-                        <span class="text-[10px] text-gray-500 block">Refleksi</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Article Hero -->
-        <section id="heroSection" class="relative rounded-3xl overflow-hidden bg-darkbg-900 border border-gold-500/30 shadow-2xl group">
-            <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[400px]">
-                <div class="lg:col-span-7 relative overflow-hidden min-h-[250px] lg:min-h-full cursor-pointer" data-action="open-article" data-id="1">
-                    <img id="heroImage" src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80" alt="Sejarah PSHWTM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none">
-                    <div class="absolute inset-0 bg-gradient-to-t from-darkbg-900 via-darkbg-900/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-darkbg-900 pointer-events-none"></div>
-                </div>
-                <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-darkbg-900/95 text-white relative z-10">
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="px-3 py-1 bg-gold-500 text-darkbg-900 text-[11px] font-bold rounded-full uppercase tracking-wider">Artikel Utama</span>
-                            <span class="text-xs text-gold-400 flex items-center gap-1"><i class="fa-regular fa-clock pointer-events-none"></i> 7 min baca</span>
-                        </div>
-                        <h1 data-action="open-article" data-id="1" class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif leading-tight text-gold-400 hover:text-gold-500 transition-colors cursor-pointer">
-                            Pendiri & Perjalanan Pendirian Persaudaraan Setia Hati Winongo Tunas Muda
-                        </h1>
-                        <p class="text-gray-300 text-xs sm:text-sm line-clamp-3 leading-relaxed pointer-events-none">
-                            Memahami peranan penting Raden Djimat Hendro Soewarno dalam meneruskan serta mengorganisir ajaran Setia Hati di Winongo, Madiun hingga berkembang pesat sebagai warisan budaya bernilai tinggi...
-                        </p>
-                    </div>
-                    
-                    <div class="pt-6 border-t border-darkbg-700 flex items-center justify-between mt-4">
-                        <div class="text-xs pointer-events-none">
-                            <p class="font-semibold text-gray-200">Tim Pustaka Tiga Zaman</p>
-                            <p class="text-[10px] text-gold-400">📜 Jejak Sejarah PSHWTM</p>
-                        </div>
-                        <button data-action="open-article" data-id="1" class="px-4 py-2 bg-gold-500 hover:bg-gold-600 text-darkbg-900 font-bold text-xs rounded-xl transition-all flex items-center gap-2 shadow-md cursor-pointer">
-                            Mulai Membaca <i class="fa-solid fa-arrow-right pointer-events-none"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Articles Grid Section -->
-        <section class="space-y-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-2xl font-bold font-serif text-gray-900 dark:text-white flex items-center gap-2">
-                        <span class="w-2.5 h-7 bg-gold-500 rounded-full inline-block"></span>
-                        Katalog Edukasi & Arsip Historis
-                    </h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Pilih materi untuk dibaca, dipahami, dan dicatat poin pentingnya</p>
-                </div>
-                <div class="text-xs font-semibold px-3 py-1 rounded-full bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300">
-                    <span id="countNumber">0</span> Artikel Tersedia
-                </div>
-            </div>
-
-            <!-- Grid Items -->
-            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-            <!-- Empty Search State -->
-            <div id="emptyState" class="hidden text-center py-16 space-y-4 bg-white dark:bg-darkbg-800 rounded-3xl border border-gray-200 dark:border-darkbg-700">
-                <div class="w-16 h-16 mx-auto bg-gold-500/10 rounded-full flex items-center justify-center text-gold-500 text-2xl">
-                    <i class="fa-solid fa-magnifying-glass pointer-events-none"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">Materi Tidak Ditemukan</h3>
-                <p class="text-xs text-gray-500 max-w-md mx-auto">Coba gunakan kata kunci pencarian lain atau pilih kategori yang tersedia.</p>
-                <button data-action="reset-filter" class="px-4 py-2 bg-gold-500 text-darkbg-900 font-semibold text-xs rounded-xl hover:bg-gold-600 cursor-pointer">
-                    Reset Filter
+            <div class="article-content">
+              <div class="article-meta">${escapeHTML(article.date)} · ${escapeHTML(article.category)}</div>
+              <h3>${escapeHTML(article.title)}</h3>
+              <p>${escapeHTML(article.excerpt)}</p>
+              <div class="article-actions">
+                <button class="btn btn-primary" type="button"
+                  data-action="open-article" data-id="${article.id}">
+                  Baca artikel →
                 </button>
+                <button class="btn" type="button"
+                  data-action="toggle-bookmark" data-id="${article.id}"
+                  aria-label="${isSaved ? "Hapus dari arsip" : "Simpan ke arsip"}">
+                  ${isSaved ? "♥ Tersimpan" : "♡ Simpan"}
+                </button>
+              </div>
             </div>
-        </section>
+          </article>`;
+      }).join("");
+    }
 
-    </main>
+    function openArticle(id) {
+      const article = findArticle(id);
+      if (!article) {
+        showToast("Artikel tidak ditemukan.");
+        return;
+      }
 
-    <!-- Footer -->
-    <footer class="bg-darkbg-900 border-t border-darkbg-700 text-gray-400 py-10 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-            <div class="flex items-center justify-center gap-2 text-white font-bold text-lg">
-                <div class="w-8 h-8 rounded-lg bg-gold-500 flex items-center justify-center text-darkbg-900 text-sm">
-                    <i class="fa-solid fa-scroll pointer-events-none"></i>
-                </div>
-                <span>PUSTAKA <span class="text-gold-500 font-serif">TIGA ZAMAN</span></span>
+      currentArticleId = article.id;
+      document.getElementById("modal-title").textContent = article.title;
+      document.getElementById("modal-meta").textContent =
+        article.date + " · " + article.category;
+      document.getElementById("modal-body").innerHTML = article.content;
+
+      updateModalBookmarkButton();
+
+      const overlay = document.getElementById("article-overlay");
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      document.querySelector('[data-action="close-article"]').focus();
+    }
+    function updateModalBookmarkButton() {
+      const button = document.getElementById("modal-bookmark");
+      const saved = getBookmarks().includes(currentArticleId);
+      button.textContent = saved ? "♥ Hapus dari arsip" : "♡ Simpan arsip";
+    }
+
+    function toggleBookmark(id) {
+      const article = findArticle(id);
+      if (!article) return;
+
+      let saved = getBookmarks();
+
+      if (saved.includes(article.id)) {
+        saved = saved.filter(savedId => savedId !== article.id);
+        showToast("Artikel dihapus dari arsip.");
+      } else {
+        saved.push(article.id);
+        showToast("Artikel berhasil disimpan.");
+      }
+
+      if (writeStorage(STORAGE_KEYS.bookmarks, saved)) {
+        renderArticles();
+        renderBookmarks();
+        updateStats();
+        updateModalBookmarkButton();
+      }
+    }
+
+    function renderBookmarks() {
+      const saved = getBookmarks();
+      const list = document.getElementById("bookmarks-list");
+
+      const validSaved = saved.filter(id => findArticle(id));
+
+      if (validSaved.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <strong>Belum ada arsip tersimpan.</strong>
+            <p>Tekan tombol Simpan pada artikel untuk menambahkannya di sini.</p>
+          </div>`;
+        return;
+      }
+
+      list.innerHTML = validSaved.map(id => {
+        const article = findArticle(id);
+
+        return `
+          <div class="saved-item">
+            <h3>${escapeHTML(article.title)}</h3>
+            <p>${escapeHTML(article.category)} · ${escapeHTML(article.date)}</p>
+            <div class="saved-item-actions">
+              <button class="btn btn-primary" type="button"
+                data-action="read-saved" data-id="${article.id}">Baca</button>
+              <button class="btn" type="button"
+                data-action="remove-bookmark" data-id="${article.id}">Hapus</button>
             </div>
-            <p class="text-xs text-gray-500 max-w-lg mx-auto">
-                Wadah literasi digital untuk pelestarian sejarah, ajaran luhur, serta pencatatan refleksi edukasi Persaudaraan Setia Hati Winongo Tunas Muda.
-            </p>
-            <p class="text-[11px] text-gold-500/80">© 2026 Pustaka Tiga Zaman. Hak Cipta Dilindungi.</p>
+          </div>`;
+      }).join("");
+    }
+
+    function openDrawer(name) {
+      const drawer = document.getElementById(name);
+      if (!drawer) return;
+
+      closeOtherDrawers(name);
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      if (name === "bookmarks-drawer") renderBookmarks();
+      if (name === "notes-drawer") renderNotes();
+    }
+
+    function closeDrawer(name) {
+      const drawer = document.getElementById(name);
+      if (!drawer) return;
+
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+      restoreBodyScroll();
+    }
+
+    function closeOtherDrawers(exceptName) {
+      ["bookmarks-drawer", "notes-drawer"].forEach(name => {
+        if (name !== exceptName) {
+          const drawer = document.getElementById(name);
+          drawer.classList.remove("open");
+          drawer.setAttribute("aria-hidden", "true");
+        }
+      });
+    }
+
+    function restoreBodyScroll() {
+      const modalOpen = document.getElementById("article-overlay").classList.contains("open");
+      const bookmarksOpen = document.getElementById("bookmarks-drawer").classList.contains("open");
+      const notesOpen = document.getElementById("notes-drawer").classList.contains("open");
+
+      document.body.style.overflow =
+        modalOpen || bookmarksOpen || notesOpen ? "hidden" : "";
+    }
+
+    function renderNotes() {
+      const notes = getNotes();
+      const list = document.getElementById("notes-list");
+      if (notes.length === 0) {
+        list.innerHTML = `<p class="muted">Belum ada catatan. Catatan yang disimpan akan tampil di sini.</p>`;
+        return;
+      }
+
+      list.innerHTML = notes.map(note => `
+        <div class="note-card">
+          <strong>${escapeHTML(note.title || "Catatan tanpa judul")}</strong>
+          <p>${escapeHTML(note.text || "")}</p>
+          <small>${escapeHTML(note.date || "")}</small>
+          <div style="margin-top:8px">
+            <button class="btn" type="button" data-action="delete-note"
+              data-id="${escapeHTML(note.id)}">Hapus catatan</button>
+          </div>
         </div>
-    </footer>
+      `).join("");
+    }
+    function saveNote(event) {
+      event.preventDefault();
 
-    <!-- Full Article Reader Modal -->
-    <div id="readerModal" data-action="modal-backdrop" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md overflow-y-auto flex justify-center p-2 sm:p-4 md:p-6">
-        <div id="readerCard" class="bg-white dark:bg-darkbg-800 w-full max-w-4xl rounded-3xl shadow-2xl border border-gray-200 dark:border-darkbg-700 overflow-hidden my-auto flex flex-col max-h-[94vh] transition-all">
-            
-            <!-- Modal Reader Bar Controls -->
-            <div class="sticky top-0 z-20 bg-white/95 dark:bg-darkbg-800/95 backdrop-blur border-b border-gray-200 dark:border-darkbg-700 px-6 py-4 flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <span id="modalCategoryTag" class="px-3 py-1 bg-gold-500/20 text-gold-700 dark:text-gold-400 font-semibold text-xs rounded-full border border-gold-500/30">
-                        Kategori
-                    </span>
-                    <span id="modalReadTime" class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                        <i class="fa-regular fa-clock pointer-events-none"></i> 5 min
-                    </span>
-                </div>
+      const title = document.getElementById("note-title").value.trim();
+      const text = document.getElementById("note-text").value.trim();
 
-                <!-- Custom Actions -->
-                <div class="flex items-center gap-2">
-                    <div class="hidden sm:flex items-center bg-gray-100 dark:bg-darkbg-700 rounded-xl p-1 text-xs">
-                        <button data-action="font-size" data-size="sm" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-darkbg-600 font-bold cursor-pointer">A-</button>
-                        <button data-action="font-size" data-size="md" class="px-2.5 py-1 rounded-lg bg-gold-500 text-darkbg-900 font-bold cursor-pointer">A</button>
-                        <button data-action="font-size" data-size="lg" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-darkbg-600 font-bold cursor-pointer">A+</button>
-                    </div>
+      if (!title || !text) {
+        showToast("Isi judul dan catatan terlebih dahulu.");
+        return;
+      }
 
-                    <button id="modalBookmarkBtn" data-action="toggle-modal-bm" class="p-2 text-gray-600 dark:text-gray-300 hover:text-gold
+      const notes = getNotes();
+      notes.unshift({
+        id: Date.now().toString() + "-" + Math.random().toString(36).slice(2, 7),
+        title,
+        text,
+        date: new Date().toLocaleString("id-ID")
+      });
+
+      if (writeStorage(STORAGE_KEYS.notes, notes)) {
+        document.getElementById("note-form").reset();
+        renderNotes();
+        updateStats();
+        showToast("Catatan berhasil disimpan.");
+      }
+    }
+
+    function deleteNote(id) {
+      const notes = getNotes().filter(note => String(note.id) !== String(id));
+
+      if (writeStorage(STORAGE_KEYS.notes, notes)) {
+        renderNotes();
+        updateStats();
+        showToast("Catatan dihapus.");
+      }
+    }
+
+    function setTheme(theme) {
+      const dark = theme === "dark";
+      document.body.classList.toggle("dark", dark);
+
+      const button = document.getElementById("theme-button");
+      button.textContent = dark ? "☀" : "☾";
+      button.setAttribute("aria-label", dark ? "Gunakan tema terang" : "Gunakan tema gelap");
+
+      writeStorage(STORAGE_KEYS.theme, dark ? "dark" : "light");
+    }
+
+    function toggleTheme() {
+      const dark = document.body.classList.contains("dark");
+      setTheme(dark ? "light" : "dark");
+    }
+
+    function resetFilters() {
+      document.getElementById("search-input").value = "";
+
+      document.getElementById("search-input").value = "";
+      document.getElementById("category-filter").value = "Semua";
+      renderArticles();
+    }
+
+    function noteCurrentArticle() {
+      const article = findArticle(currentArticleId);
+      if (!article) return;
+
+      closeArticle();
+      openDrawer("notes-drawer");
+      document.getElementById("note-title").value = "Catatan: " + article.title;
+      document.getElementById("note-text").focus();
+    }
+
+    /*
+      Satu event listener untuk tombol-tombol yang dibuat ulang
+      saat daftar artikel dirender.
+    */
+    document.addEventListener("click", event => {
+      const button = event.target.closest("[data-action]");
+      if (!button) return;
+
+      const action = button.dataset.action;
+      const id = button.dataset.id;
+
+      switch (action) {
+        case "open-article":
+          openArticle(id);
+          break;
+
+        case "close-article":
+          closeArticle();
+          break;
+
+        case "toggle-bookmark":
+        case "remove-bookmark":
+          toggleBookmark(id);
+          break;
+
+        case "toggle-current-bookmark":
+          if (currentArticleId !== null) toggleBookmark(currentArticleId);
+          break;
+
+          case "open-bookmarks":
+          openDrawer("bookmarks-drawer");
+          break;
+
+        case "close-bookmarks":
+          closeDrawer("bookmarks-drawer");
+          break;
+
+        case "open-notes":
+          openDrawer("notes-drawer");
+          break;
+
+        case "close-notes":
+          closeDrawer("notes-drawer");
+          break;
+
+        case "read-saved":
+          closeDrawer("bookmarks-drawer");
+          openArticle(id);
+          break;
+
+        case "delete-note":
+          deleteNote(id);
+          break;
+
+        case "toggle-theme":
+          toggleTheme();
+          break;
+
+        case "reset-filters":
+          resetFilters();
+          break;
+
+        case "note-current-article":
+          noteCurrentArticle();
+          break;
+      }
+    });
+
+    document.getElementById("search-input").addEventListener("input", renderArticles);
+    document.getElementById("category-filter").addEventListener("change", renderArticles);
+    document.getElementById("note-form").addEventListener("submit", saveNote);
+
+    // Klik area luar modal untuk menutupnya.
+    document.getElementById("article-overlay").addEventListener("click", event => {
+      if (event.target.id === "article-overlay") closeArticle();
+    });
+
+    // Tombol Escape menutup modal atau panel yang sedang terbuka.
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape") return;
+
+      closeArticle();
+      closeDrawer("bookmarks-drawer");
+      closeDrawer("notes-drawer");
+    });
+
+    function initialize() {
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      const savedTheme = readStorage(STORAGE_KEYS.theme, "light");
+      setTheme(savedTheme === "dark" ? "dark" : "light");
+
+      renderArticles();
+      renderBookmarks();
+      renderNotes();
+      updateStats();
+    }
+
+    initialize();
+  </script>
+</body>
+</html>
