@@ -83,7 +83,7 @@
                 <!-- Desktop Search -->
                 <div class="hidden md:flex flex-1 max-w-md mx-8">
                     <div class="relative w-full">
-                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Cari sejarah, tokoh, ajaran, atau falsafah..." 
+                        <input type="text" id="searchInput" placeholder="Cari sejarah, tokoh, ajaran, atau falsafah..." 
                             class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-darkbg-600 bg-gray-100 dark:bg-darkbg-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400"></i>
                     </div>
@@ -91,20 +91,17 @@
 
                 <!-- Personal Controls -->
                 <div class="flex items-center gap-2 sm:gap-3">
-                    <!-- Bookmarks Drawer Button -->
-                    <button onclick="toggleDrawer('bookmarksDrawer')" class="relative p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700" title="Daftar Baca Nanti">
+                    <button id="btnBookmarksDrawer" class="relative p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700" title="Daftar Baca Nanti">
                         <i class="fa-solid fa-bookmark text-lg"></i>
                         <span id="bookmarkBadge" class="absolute -top-1 -right-1 bg-gold-500 text-darkbg-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
                     </button>
 
-                    <!-- Personal Notes Drawer Button -->
-                    <button onclick="toggleDrawer('notesDrawer')" class="relative p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700" title="Catatan Refleksi">
+                    <button id="btnNotesDrawer" class="relative p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700" title="Catatan Refleksi">
                         <i class="fa-solid fa-note-sticky text-lg"></i>
                         <span id="notesBadge" class="absolute -top-1 -right-1 bg-gold-500 text-darkbg-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
                     </button>
 
-                    <!-- Theme Toggle -->
-                    <button onclick="toggleTheme()" class="p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700" title="Ubah Mode Tampilan">
+                    <button id="btnThemeToggle" class="p-2.5 text-gray-600 dark:text-gray-300 hover:text-gold-500 dark:hover:text-gold-500 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-darkbg-700" title="Ubah Mode Tampilan">
                         <i class="fa-solid fa-moon text-lg dark:hidden"></i>
                         <i class="fa-solid fa-sun text-lg hidden dark:block text-gold-400"></i>
                     </button>
@@ -114,7 +111,7 @@
             <!-- Mobile Search Bar -->
             <div class="pb-4 md:hidden">
                 <div class="relative w-full">
-                    <input type="text" id="mobileSearchInput" oninput="handleMobileSearch()" placeholder="Cari artikel sejarah PSHWTM..." 
+                    <input type="text" id="mobileSearchInput" placeholder="Cari artikel sejarah PSHWTM..." 
                         class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-darkbg-600 bg-gray-100 dark:bg-darkbg-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400"></i>
                 </div>
@@ -127,11 +124,11 @@
                 <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold mr-2 flex items-center gap-1">
                     <i class="fa-solid fa-filter text-gold-500"></i> Kategori:
                 </span>
-                <button onclick="filterCategory('semua')" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gold-500 text-darkbg-900 font-semibold shadow-sm" data-category="semua">Semua</button>
-                <button onclick="filterCategory('Jejak Sejarah')" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Jejak Sejarah">📜 Jejak Sejarah</button>
-                <button onclick="filterCategory('Silsilah & Tokoh')" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Silsilah & Tokoh">👑 Silsilah & Tokoh</button>
-                <button onclick="filterCategory('Falsafah & Ajaran')" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Falsafah & Ajaran">🪶 Falsafah & Ajaran</button>
-                <button onclick="filterCategory('Warisan Budaya')" class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Warisan Budaya">🌱 Warisan Budaya</button>
+                <button class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gold-500 text-darkbg-900 font-semibold shadow-sm" data-category="semua">Semua</button>
+                <button class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Jejak Sejarah">📜 Jejak Sejarah</button>
+                <button class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Silsilah & Tokoh">👑 Silsilah & Tokoh</button>
+                <button class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Falsafah & Ajaran">🪶 Falsafah & Ajaran</button>
+                <button class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap transition-all bg-gray-200 dark:bg-darkbg-700 text-gray-700 dark:text-gray-300 hover:bg-gold-500/20 hover:text-gold-500" data-category="Warisan Budaya">🌱 Warisan Budaya</button>
             </div>
         </div>
     </header>
@@ -192,7 +189,7 @@
                             <span class="px-3 py-1 bg-gold-500 text-darkbg-900 text-[11px] font-bold rounded-full uppercase tracking-wider">Artikel Utama</span>
                             <span class="text-xs text-gold-400 flex items-center gap-1"><i class="fa-regular fa-clock"></i> 7 min baca</span>
                         </div>
-                        <h1 id="heroTitle" class="text-xl sm:text-2xl lg:text-3xl font-bold font-serif leading-tight text-gold-400 hover:text-gold-500 transition-colors cursor-pointer" onclick="openArticleModal(1)">
+                        <h1 id="heroTitle" data-article-id="1" class="btn-open-article text-xl sm:text-2xl lg:text-3xl font-bold font-serif leading-tight text-gold-400 hover:text-gold-500 transition-colors cursor-pointer">
                             Pendiri & Perjalanan Pendirian Persaudaraan Setia Hati Winongo Tunas Muda
                         </h1>
                         <p id="heroExcerpt" class="text-gray-300 text-xs sm:text-sm line-clamp-3 leading-relaxed">
@@ -205,7 +202,7 @@
                             <p class="font-semibold text-gray-200">Tim Pustaka Tiga Zaman</p>
                             <p class="text-[10px] text-gold-400">📜 Jejak Sejarah PSHWTM</p>
                         </div>
-                        <button onclick="openArticleModal(1)" class="px-4 py-2 bg-gold-500 hover:bg-gold-600 text-darkbg-900 font-bold text-xs rounded-xl transition-all flex items-center gap-2 shadow-md">
+                        <button data-article-id="1" class="btn-open-article px-4 py-2 bg-gold-500 hover:bg-gold-600 text-darkbg-900 font-bold text-xs rounded-xl transition-all flex items-center gap-2 shadow-md">
                             Mulai Membaca <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -238,7 +235,7 @@
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">Materi Tidak Ditemukan</h3>
                 <p class="text-xs text-gray-500 max-w-md mx-auto">Coba gunakan kata kunci pencarian lain atau pilih kategori yang tersedia.</p>
-                <button onclick="resetFilters()" class="px-4 py-2 bg-gold-500 text-darkbg-900 font-semibold text-xs rounded-xl hover:bg-gold-600">
+                <button id="btnResetFilter" class="px-4 py-2 bg-gold-500 text-darkbg-900 font-semibold text-xs rounded-xl hover:bg-gold-600">
                     Reset Filter
                 </button>
             </div>
@@ -279,16 +276,26 @@
 
                 <!-- Custom Actions -->
                 <div class="flex items-center gap-2">
-                    <!-- Font Resize Buttons -->
                     <div class="hidden sm:flex items-center bg-gray-100 dark:bg-darkbg-700 rounded-xl p-1 text-xs">
-                        <button onclick="setReaderFontSize('sm')" class="font-btn-sm px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-darkbg-600 font-bold">A-</button>
-                        <button onclick="setReaderFontSize('md')" class="font-btn-md px-2.5 py-1 rounded-lg bg-gold-500 text-darkbg-900 font-bold">A</button>
-                        <button onclick="setReaderFontSize('lg')" class="font-btn-lg px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-darkbg-600 font-bold">A+</button>
+                        <button id="btnFontSm" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-darkbg-600 font-bold">A-</button>
+                        <button id="btnFontMd" class="px-2.5 py-1 rounded-lg bg-gold-500 text-darkbg-900 font-bold">A</button>
+                        <button id="btnFontLg" class="px-2.5 py-1 rounded-lg hover:bg-white dark:hover:bg-darkbg-600 font-bold">A+</button>
                     </div>
 
-                    <!-- Bookmark Modal Button -->
-                    <button onclick="toggleBookmarkCurrentModal()" id="modalBookmarkBtn" class="p-2 text-gray-600 dark:text-gray-300 hover:text-gold-500 transition-colors rounded-xl hover:bg-gray-100 dark:hover:bg-darkbg-700 text-xs font-semibold">
+                    <button id="modalBookmarkBtn" class="p-2 text-gray-600 dark:text-gray-300 hover:text-gold-500 transition-colors rounded-xl hover:bg-gray-100 dark:hover:bg-darkbg-700 text-xs font-semibold">
                         <i class="fa-regular fa-bookmark text-base"></i>
                     </button>
 
-          
+                    <button id="btnCloseModal" class="p-2 text-gray-400 hover:text-red-500 rounded-xl hover:bg-gray-100 dark:hover:bg-darkbg-700 text-lg transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Body Content -->
+            <div id="modalBodyContainer" class="p-6 sm:p-10 overflow-y-auto space-y-6 text-size-md">
+                <div class="space-y-3">
+                    <h1 id="modalTitle" class="text-2xl sm:text-3xl font-bold font-serif text-gray-900 dark:text-gold-400 leading-tight">
+                        Judul Artikel
+                    </h1>
+     
