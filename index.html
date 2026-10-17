@@ -3,1372 +3,841 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#173c2c">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
 
-  <title>PUSTAKA TIGA ZAMAN | Sejarah & Edukasi PSHWTM</title>
-  <meta name="description" content="Portal sejarah, budaya, dokumentasi, dan edukasi Persaudaraan Setia Hati Winongo Tunas Muda.">
-  <meta name="keywords" content="Pustaka Tiga Zaman, PSHWTM, PSHW-TM, Setia Hati Winongo, sejarah, budaya">
+  <meta name="description"
+    content="Pustaka Tiga Zaman PSHWTM: edukasi sejarah, nilai budaya, dan warisan generasi.">
+
+  <title>PUSTAKA TIGA ZAMAN | PSHWTM</title>
 
   <style>
     :root {
-      --bg: #f4f5f0;
-      --surface: #ffffff;
-      --text: #202b24;
-      --muted: #66736a;
-      --primary: #173c2c;
-      --primary-2: #24573e;
-      --accent: #d7b75a;
-      --border: #dfe5dd;
-      --shadow: 0 8px 28px rgba(20, 45, 30, .09);
+      --black: #111111;
+      --dark: #1d1d1d;
+      --yellow: #f2c230;
+      --white: #fffdf5;
+      --gray: #bdbdbd;
     }
 
-    body.dark {
-      --bg: #111914;
-      --surface: #1b2820;
-      --text: #edf2ed;
-      --muted: #b0bdb3;
-      --primary: #b4d2bc;
-      --primary-2: #d2e6d6;
-      --accent: #e2c56b;
-      --border: #34463a;
-      --shadow: 0 8px 28px rgba(0, 0, 0, .22);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--black);
+      color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      transition: background .2s, color .2s;
+      line-height: 1.7;
     }
 
-    button, input, select, textarea { font: inherit; }
-
-    button, select { cursor: pointer; }
-
-    button:focus-visible, input:focus-visible,
-    select:focus-visible, textarea:focus-visible,
-    a:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 3px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-
-    a { color: inherit; }
 
     .container {
-      width: min(1120px, 92%);
-      margin-inline: auto;
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    .topbar {
-      background: var(--primary);
-      color: #fff;
-      padding: 9px 0;
-      font-size: 12px;
-      letter-spacing: .5px;
-    }
-
-    .topbar-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
+    /* HEADER */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      background: var(--black);
+      border-bottom: 2px solid var(--yellow);
     }
 
     .navbar {
-      min-height: 76px;
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 12px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      min-width: 0;
+      gap: 10px;
     }
 
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      flex: 0 0 48px;
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--yellow);
       display: grid;
       place-items: center;
-      background: var(--primary);
-      color: #fff;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      font-weight: 800;
-      font-size: 14px;
+      flex-shrink: 0;
     }
 
-    .brand-name {
-      display: block;
-      font-weight: 800;
-      color: var(--primary);
+    .logo svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .brand h1 {
+      color: var(--yellow);
       font-size: 17px;
       line-height: 1.3;
     }
 
-    .brand-sub {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      padding: 9px 12px;
-      border-radius: 9px;
-      font-weight: 600;
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-decoration: none;
-    }
-
-    .btn:hover { border-color: var(--accent); }
-
-    .btn-primary {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-    }
-
-    body.dark .btn-primary {
-      color: #132218;
-    }
-
-    .hero {
-      background:
-        radial-gradient(ellipse at 85% 20%, rgba(215,183,90,.22), transparent 34%),
-        linear-gradient(135deg, #102b20, #24573e);
-      color: #fff;
-      padding: 64px 0 56px;
-    }
-
-    .hero-content { max-width: 760px; }
-
-    .eyebrow {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,.35);
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 11px;
+    .brand small {
+      color: var(--gray);
+      font-size: 10px;
       letter-spacing: 1px;
-      text-transform: uppercase;
     }
 
-    .hero h1 {
-      margin: 18px 0 12px;
-      font-size: clamp(32px, 5vw, 54px);
-      line-height: 1.1;
-      letter-spacing: -.8px;
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 65px 0;
+      background: linear-gradient(135deg, #111111, #29210b);
+    }
+
+    .label {
+      color: var(--yellow);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero h2 {
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 span {
+      color: var(--yellow);
     }
 
     .hero p {
-      max-width: 650px;
-      color: #e2ebe4;
-      font-size: 16px;
+      max-width: 620px;
+      color: #dddddd;
+      font-size: 15px;
       margin-bottom: 24px;
     }
 
-    .hero .btn {
-      background: var(--accent);
-      color: #17271b;
-      border-color: var(--accent);
+    .button {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 11px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 13px;
     }
 
-    .hero .btn-outline {
-      background: transparent;
-      color: #fff;
-      border-color: rgba(255,255,255,.5);
+    .button:hover {
+      background: var(--white);
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    /* MOTTO */
+    .motto {
+      padding: 18px 0;
+      text-align: center;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: bold;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: -24px;
-      position: relative;
-      z-index: 2;
+    /* SECTION */
+    section {
+      padding: 48px 0;
+      scroll-margin-top: 15px;
     }
 
-    .stat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      border-radius: 14px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 25px;
-      color: var(--primary);
-    }
-
-    .stat span {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    main { padding: 44px 0 64px; }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 16px;
-      flex-wrap: wrap;
+    .section-title {
       margin-bottom: 22px;
     }
 
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(23px, 3vw, 30px);
-      line-height: 1.25;
+    .section-title small {
+      color: var(--yellow);
+      font-size: 11px;
+      letter-spacing: 2px;
     }
 
-    .section-heading p {
-      margin: 6px 0 0;
-      color: var(--muted);
+    .section-title h2 {
+      font-size: 28px;
+      margin-top: 5px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    /* TENTANG */
+    .about p {
+      color: #dddddd;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    /* KATEGORI */
+    .categories {
+      background: #191919;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .category {
+      background: var(--dark);
+      border: 1px solid #40391f;
+      border-radius: 7px;
+      padding: 20px;
+      transition: 0.2s;
+    }
+
+    .category:hover {
+      border-color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    .category .number {
+      color: var(--yellow);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .category h3 {
+      margin: 7px 0;
+      font-size: 17px;
+    }
+
+    .category p {
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    /* ARTIKEL */
+    .search {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .search input {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      background: #202020;
+      color: white;
+      border: 1px solid #555044;
+      border-radius: 4px;
+      padding: 12px;
       font-size: 14px;
     }
 
-    .filters {
+    .search button {
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      padding: 0 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .articles {
       display: grid;
-      grid-template-columns: minmax(180px, 1fr) 220px;
-      gap: 10px;
-      margin-bottom: 22px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .field {
-      width: 100%;
-      padding: 12px 13px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--surface);
-      color: var(--text);
+    .article {
+      background: var(--dark);
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #353535;
     }
 
-    .article-grid {
+    .article .tag {
+      color: var(--yellow);
+      font-size: 10px;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+
+    .article h3 {
+      font-size: 17px;
+      margin: 8px 0;
+    }
+
+    .article p {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+
+    .read {
+      display: inline-block;
+      color: var(--yellow);
+      font-weight: bold;
+      font-size: 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .no-result {
+      display: none;
+      color: var(--gray);
+      padding: 15px 0;
+    }
+
+    /* DETAIL ARTIKEL */
+    .detail {
+      display: none;
+      margin-top: 22px;
+      padding: 22px;
+      background: #202020;
+      border-left: 4px solid var(--yellow);
+      border-radius: 4px;
+    }
+
+    .detail h3 {
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+
+    .detail p {
+      color: #dddddd;
+      font-size: 14px;
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+
+    .close-detail {
+      border: 1px solid var(--yellow);
+      background: transparent;
+      color: var(--yellow);
+      padding: 7px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* NILAI */
+    .values {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .values .section-title small {
+      color: #594400;
+    }
+
+    .values .section-title p {
+      color: #403515;
+    }
+
+    .value-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .article-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      box-shadow: 0 3px 12px rgba(0,0,0,.025);
-    }
-
-    .article-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-      transition: .2s;
-    }
-
-    .article-art {
-      height: 155px;
-      background:
-        radial-gradient(circle at 80% 25%, rgba(215,183,90,.25), transparent 25%),
-        linear-gradient(135deg, #173c2c, #397052);
-      color: #fff;
-      display: flex;
-      align-items: end;
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .article-art::after {
-      content: "PTZ";
-      position: absolute;
-      right: 12px;
-      top: -16px;
-      font-size: 90px;
-      font-weight: 900;
-      opacity: .08;
-      letter-spacing: -8px;
-    }
-
-    .article-art span {
-      z-index: 1;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,.4);
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-
-    .article-content {
-      padding: 17px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .article-meta {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 7px;
-    }
-
-    .article-content h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      line-height: 1.35;
-    }
-
-    .article-content p {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 0 0 16px;
-      flex: 1;
-    }
-
-    .article-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--border);
+    .value {
+      border-top: 2px solid var(--black);
       padding-top: 12px;
     }
 
-    .article-actions .btn { padding: 7px 9px; }
-
-    .empty-state {
-      text-align: center;
-      background: var(--surface);
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      padding: 35px 15px;
-      color: var(--muted);
-      grid-column: 1 / -1;
+    .value h3 {
+      margin-bottom: 5px;
     }
 
-    .about {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px;
-      margin-top: 50px;
+    .value p {
+      font-size: 13px;
     }
 
-    .about h2 { margin-top: 0; }
-
-    .about p { color: var(--muted); }
-
+    /* FOOTER */
     footer {
-      background: #10271d;
-      color: #e7eee8;
-      padding: 28px 0;
-      font-size: 13px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.58);
-      z-index: 100;
-      padding: 20px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .overlay.open { display: flex; }
-
-    .modal {
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 16px;
-      width: min(760px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      box-shadow: var(--shadow);
-    }
-
-    .modal-header {
-      padding: 17px 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      gap: 15px;
-      position: sticky;
-      top: 0;
-      background: var(--surface);
-      z-index: 2;
-    }
-
-    .modal-header h2 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.3;
-    }
-
-    .modal-body { padding: 20px; }
-
-    .article-body { overflow-wrap: anywhere; }
-
-    .article-body h3 { margin-top: 24px; }
-
-    .article-body p { margin: 0 0 15px; }
-
-    .article-body ul { padding-left: 22px; }
-
-    .modal-close {
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      font-size: 25px;
-      line-height: 1;
-      padding: 3px 7px;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
-
-    .modal-close:hover { background: var(--bg); }
-
-    .drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100dvh;
-      width: min(420px, 92vw);
-      background: var(--surface);
-      color: var(--text);
-      z-index: 110;
-      box-shadow: var(--shadow);
-      transform: translateX(105%);
-      transition: transform .22s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .drawer.open { transform: translateX(0); }
-
-    .drawer-header {
-      padding: 17px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .drawer-header h2 { margin: 0; font-size: 20px; }
-
-    .drawer-content {
-      padding: 17px;
-      overflow: auto;
-      flex: 1;
-    }
-
-    .saved-item {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 10px;
-    }
-
-    .saved-item h3 {
-      font-size: 15px;
-      margin: 0 0 5px;
-    }
-
-    .saved-item p {
-      color: var(--muted);
-      font-size: 12px;
-      margin: 0 0 10px;
-    }
-
-    .saved-item-actions {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
-
-    .note-card {
-      border-left: 3px solid var(--accent);
-      padding: 10px 12px;
-      background: var(--bg);
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 10px;
-      overflow-wrap: anywhere;
-    }
-
-    .note-card p { margin: 5px 0; white-space: pre-wrap; }
-
-    .note-card small { color: var(--muted); }
-
-    .note-form {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .note-form textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 22px;
-      transform: translate(-50%, 20px);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 200;
-      background: #173c2c;
-      color: white;
-      padding: 11px 16px;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      transition: .2s;
-      max-width: 90vw;
+      padding: 30px 0 20px;
       text-align: center;
-      font-size: 13px;
+      background: #090909;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translate(-50%, 0);
+    footer h3 {
+      color: var(--yellow);
+      font-size: 17px;
     }
 
-    .muted { color: var(--muted); }
-
-    @media (max-width: 800px) {
-      .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .brand-sub { display: none; }
-      .navbar { min-height: 68px; }
+    footer p {
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 5px;
     }
 
-    @media (max-width: 560px) {
-      .container { width: 92%; }
-      .navbar { align-items: center; }
-      .brand-mark { width: 40px; height: 40px; flex-basis: 40px; }
-      .brand-name { font-size: 14px; }
-      .nav-actions { gap: 5px; }
-      .nav-actions .btn { padding: 8px; font-size: 12px; }
-      .hero { padding: 45px 0 48px; }
-      .hero p { font-size: 14px; }
-      .stats { gap: 8px; }
-      .stat { padding: 12px 9px; }
-      .stat strong { font-size: 20px; }
-      .stat span { font-size: 10px; }
-      main { padding-top: 35px; }
-      .filters { grid-template-columns: 1fr; }
-      .article-grid { grid-template-columns: 1fr; }
-      .article-art { height: 135px; }
-      .about { padding: 20px; }
-      .overlay { padding: 10px; }
-      .modal { max-height: 94vh; }
-      .modal-body { padding: 16px; }
+    .copyright {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #333;
+      color: #888;
+      font-size: 11px;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 10px 15px;
+      }
+
+      .hero {
+        padding: 48px 0;
+      }
+
+      .grid,
+      .articles,
+      .value-list {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI</span>
-      <span>Portal Sejarah dan Edukasi</span>
-    </div>
-  </div>
 
   <header>
     <div class="container navbar">
-      <a class="brand" href="#" aria-label="Beranda Pustaka Tiga Zaman">
-        <span class="brand-mark">PTZ</span>
-        <span>
-          <span class="brand-name">PUSTAKA TIGA ZAMAN</span>
-          <span class="brand-sub">Portal Sejarah &amp; Edukasi PSHWTM</span>
-        </span>
+
+      <a class="brand" href="#beranda">
+        <div class="logo">
+          <!-- Logo walet hitam berbentuk siluet -->
+          <svg viewBox="0 0 100 100" aria-label="Logo burung walet">
+            <path fill="#111111" d="
+              M49 44
+              C39 32 26 17 5 12
+              C17 30 25 47 28 64
+              C19 57 10 52 2 51
+              C12 70 28 84 44 82
+              L50 72 L56 82
+              C72 84 88 70 98 51
+              C90 52 81 57 72 64
+              C75 47 83 30 95 12
+              C74 17 61 32 51 44
+              L50 35 L43 24 L48 43 Z"/>
+          </svg>
+        </div>
+
+        <div>
+          <h1>PUSTAKA TIGA ZAMAN</h1>
+          <small>PSHWTM • LITERASI BUDAYA</small>
+        </div>
       </a>
 
-      <nav class="nav-actions" aria-label="Menu utama">
-        <button class="btn" type="button" data-action="open-bookmarks">
-          ♡ <span>Arsip</span> <span id="bookmark-count">0</span>
-        </button>
-        <button class="btn" type="button" data-action="open-notes">✎ Catatan</button>
-        <button class="btn" type="button" data-action="toggle-theme" id="theme-button" aria-label="Ubah tema">☾</button>
+      <nav aria-label="Navigasi utama">
+        <a href="#beranda">Beranda</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#kategori">Kategori</a>
+        <a href="#artikel">Artikel</a>
       </nav>
+
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <span class="eyebrow">Dokumentasi • Literasi • Pelestarian</span>
-        <h1>Merawat Sejarah,<br>Menjaga Warisan.</h1>
+  <main>
+
+    <!-- HALAMAN UTAMA -->
+    <section class="hero" id="beranda">
+      <div class="container">
+
+        <div class="label">PUSAT EDUKASI PSHWTM</div>
+
+        <h2>
+          Mengenal Sejarah,<br>
+          <span>Merawat Warisan.</span>
+        </h2>
+
         <p>
-          Ruang baca digital untuk menelusuri sejarah, nilai persaudaraan,
-          budaya, dan perjalanan generasi. Belajar dari masa lalu untuk
-          menata masa depan.
+          Ruang belajar untuk mengenal perjalanan sejarah PSHWTM,
+          memahami nilai budaya, serta mewariskan pengetahuan
+          kepada generasi mendatang.
         </p>
-        <div class="hero-buttons">
-          <a class="btn" href="#koleksi">Jelajahi Koleksi ↓</a>
-          <a class="btn btn-outline" href="#tentang">Tentang Pustaka</a>
-        </div>
+
+        <a href="#artikel" class="button">MULAI BELAJAR →</a>
+
       </div>
-    </div>
-  </section>
-
-  <div class="container stats" aria-label="Statistik koleksi">
-    <div class="stat">
-      <strong id="stat-articles">0</strong>
-      <span>Artikel tersedia</span>
-    </div>
-    <div class="stat">
-      <strong id="stat-bookmarks">0</strong>
-      <span>Arsip tersimpan</span>
-    </div>
-    <div class="stat">
-      <strong id="stat-notes">0</strong>
-      <span>Catatan pribadi</span>
-    </div>
-  </div>
-
-  <main class="container">
-    <section id="koleksi">
-      <div class="section-heading">
-        <div>
-          <h2>Koleksi Pustaka</h2>
-          <p>Telusuri tulisan berdasarkan judul, topik, atau kategori.</p>
-        </div>
-        <span class="muted" id="result-count" aria-live="polite">0 artikel</span>
-      </div>
-
-      <div class="filters">
-        <input
-          class="field"
-          id="search-input"
-          type="search"
-          placeholder="Cari sejarah, tokoh, budaya..."
-          aria-label="Cari artikel"
-        >
-
-        <select class="field" id="category-filter" aria-label="Pilih kategori">
-          <option value="Semua">Semua kategori</option>
-          <option value="Sejarah">Sejarah</option>
-          <option value="Tokoh">Tokoh</option>
-          <option value="Nilai dan Falsafah">Nilai dan Falsafah</option>
-          <option value="Budaya">Budaya</option>
-          <option value="Dokumentasi">Dokumentasi</option>
-        </select>
-      </div>
-
-      <div class="article-grid" id="article-grid"></div>
     </section>
 
-    <section class="about" id="tentang">
-      <h2>Tentang Pustaka Tiga Zaman</h2>
-      <p>
-        Pustaka Tiga Zaman merupakan ruang dokumentasi dan literasi untuk
-        merawat jejak sejarah, nilai budaya, serta warisan antargenerasi,
-        khususnya yang berkaitan dengan Persaudaraan Setia Hati Winongo
-        Tunas Muda (PSHWTM).
-      </p>
-      <p>
-        Informasi sejarah perlu dibaca secara kritis. Bedakan sumber primer,
-        kesaksian, interpretasi, dan informasi yang belum terverifikasi.
-        Hormati tokoh, tradisi, dan pihak-pihak yang menjadi bagian dari
-        sejarah.
-      </p>
-      <p class="muted">
-        Catatan: artikel contoh di situs ini merupakan konten awal. Lengkapi
-        dan verifikasi dengan sumber dokumentasi yang dapat dipertanggungjawabkan.
-      </p>
+    <div class="motto">
+      JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI
+    </div>
+
+    <!-- TENTANG -->
+    <section id="tentang">
+      <div class="container about">
+
+        <div class="section-title">
+          <small>TENTANG KAMI</small>
+          <h2>Belajar dan Mengenal</h2>
+        </div>
+
+        <p>
+          PUSTAKA TIGA ZAMAN adalah ruang literasi dan edukasi
+          yang berfokus pada dokumentasi sejarah, nilai budaya,
+          dan warisan generasi dalam konteks PSHWTM serta
+          kebudayaan Nusantara.
+        </p>
+
+        <p>
+          Kami mendorong pembelajaran yang menghargai sumber,
+          membedakan fakta dari interpretasi, serta menjaga
+          persaudaraan dan kearifan budaya.
+        </p>
+
+      </div>
     </section>
+
+    <!-- KATEGORI -->
+    <section class="categories" id="kategori">
+      <div class="container">
+
+        <div class="section-title">
+          <small>RUANG BELAJAR</small>
+          <h2>Kategori Edukasi</h2>
+          <p>Pilih bidang yang ingin kamu pelajari.</p>
+        </div>
+
+        <div class="grid">
+
+          <a href="#artikel" class="category"
+             data-filter-category="sejarah">
+            <div class="number">01 / SEJARAH</div>
+            <h3>Jejak Sejarah</h3>
+            <p>Perjalanan PSHWTM, tokoh, peristiwa, dan arsip.</p>
+          </a>
+
+          <a href="#artikel" class="category"
+             data-filter-category="budaya">
+            <div class="number">02 / BUDAYA</div>
+            <h3>Nilai Budaya</h3>
+            <p>Falsafah hidup dan kearifan budaya Nusantara.</p>
+          </a>
+
+          <a href="#artikel" class="category"
+             data-filter-category="persaudaraan">
+            <div class="number">03 / PERSAUDARAAN</div>
+            <h3>Etika Persaudaraan</h3>
+            <p>Keteladanan, tanggung jawab, dan sikap menghormati.</p>
+          </a>
+
+          <a href="#artikel" class="category"
+             data-filter-category="literasi">
+            <div class="number">04 / LITERASI</div>
+            <h3>Pustaka Digital</h3>
+            <p>Dokumen, referensi, dan panduan penelitian.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIKEL -->
+    <section id="artikel">
+      <div class="container">
+
+        <div class="section-title">
+          <small>BACA DAN PELAJARI</small>
+          <h2>Materi Edukasi</h2>
+          <p>Pilih artikel atau cari topik yang kamu butuhkan.</p>
+        </div>
+
+        <form class="search" id="searchForm">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Cari materi edukasi..."
+            aria-label="Cari artikel"
+          >
+          <button type="submit">CARI</button>
+        </form>
+
+        <div class="articles" id="articleList">
+
+          <article class="article" data-category="sejarah">
+            <div class="tag">JEJAK SEJARAH</div>
+            <h3>Mengenal Sejarah PSHWTM</h3>
+            <p>
+              Memahami pentingnya kronologi, sumber sejarah,
+              dokumentasi, dan penelitian.
+            </p>
+            <button class="read" data-article="sejarah">
+              BACA MATERI →
+            </button>
+          </article>
+
+          <article class="article" data-category="budaya">
+            <div class="tag">NILAI BUDAYA</div>
+            <h3>Memahami Kearifan Budaya</h3>
+            <p>
+              Mengenal nilai luhur yang hidup dalam tradisi
+              dan kehidupan masyarakat.
+            </p>
+            <button class="read" data-article="budaya">
+              BACA MATERI →
+            </button>
+          </article>
+
+          <article class="article" data-category="persaudaraan">
+            <div class="tag">PERSAUDARAAN</div>
+            <h3>Persaudaraan dan Keteladanan</h3>
+            <p>
+              Membangun sikap saling menghormati dan
+              bertanggung jawab di tengah masyarakat.
+            </p>
+            <button class="read" data-article="persaudaraan">
+              BACA MATERI →
+            </button>
+          </article>
+
+          <article class="article" data-category="literasi">
+            <div class="tag">LITERASI</div>
+            <h3>Cara Meneliti Sumber Sejarah</h3>
+            <p>
+              Langkah awal memeriksa dokumen, asal sumber,
+              konteks, dan keterangan pendukung.
+            </p>
+            <button class="read" data-article="literasi">
+              BACA MATERI →
+            </button>
+          </article>
+
+        </div>
+
+        <p class="no-result" id="noResult">
+          Materi tidak ditemukan. Silakan coba kata kunci lain.
+        </p>
+
+        <!-- Artikel dibuka di bagian ini -->
+        <div class="detail" id="articleDetail"
+             aria-live="polite">
+          <h3 id="detailTitle"></h3>
+          <p id="detailText"></p>
+          <button class="close-detail" id="closeDetail">
+            Tutup Materi
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NILAI -->
+    <section class="values">
+      <div class="container">
+
+        <div class="section-title">
+          <small>SEMANGAT PUSTAKA</small>
+          <h2>Belajar dari Tiga Zaman</h2>
+          <p>
+            Masa lalu sebagai pelajaran, masa kini sebagai
+            pengabdian, dan masa depan sebagai warisan.
+          </p>
+        </div>
+
+        <div class="value-list">
+          <div class="value">
+            <h3>Sejarah</h3>
+            <p>Menjaga ingatan dan memahami perjalanan.</p>
+          </div>
+
+          <div class="value">
+            <h3>Budaya</h3>
+            <p>Merawat nilai luhur dan menghargai perbedaan.</p>
+          </div>
+
+          <div class="value">
+            <h3>Generasi</h3>
+            <p>Mewariskan pengetahuan secara bertanggung jawab.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <div>
-        <strong>PUSTAKA TIGA ZAMAN</strong><br>
-        Jejak Sejarah • Nilai Budaya • Warisan Generasi
-      </div>
-      <div>© <span id="current-year"></span> Pustaka Tiga Zaman</div>
+    <div class="container">
+      <h3>PUSTAKA TIGA ZAMAN</h3>
+      <p>PSHWTM • Jejak Sejarah • Nilai Budaya • Warisan Generasi</p>
+      <p class="copyright">
+        © <span id="year"></span> Pustaka Tiga Zaman.
+        Media edukasi dan literasi.
+      </p>
     </div>
   </footer>
 
-  <!-- Modal pembaca artikel -->
-  <div class="overlay" id="article-overlay" aria-hidden="true">
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-header">
-        <div>
-          <div class="article-meta" id="modal-meta"></div>
-          <h2 id="modal-title">Judul artikel</h2>
-        </div>
-        <button class="modal-close" type="button" data-action="close-article" aria-label="Tutup artikel">×</button>
-      </div>
-      <div class="modal-body">
-        <div class="article-body" id="modal-body"></div>
-        <hr style="border:0;border-top:1px solid var(--border);margin:22px 0">
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn btn-primary" id="modal-bookmark" type="button" data-action="toggle-current-bookmark">♡ Simpan arsip</button>
-          <button class="btn" type="button" data-action="note-current-article">✎ Buat catatan</button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Panel arsip tersimpan -->
-  <aside class="drawer" id="bookmarks-drawer" aria-label="Arsip tersimpan" aria-hidden="true">
-    <div class="drawer-header">
-      <h2>Arsip Tersimpan</h2>
-      <button class="modal-close" type="button" data-action="close-bookmarks" aria-label="Tutup arsip">×</button>
-    </div>
-    <div class="drawer-content" id="bookmarks-list"></div>
-  </aside>
-
-  <!-- Panel catatan -->
-  <aside class="drawer" id="notes-drawer" aria-label="Catatan pribadi" aria-hidden="true">
-    <div class="drawer-header">
-      <h2>Catatan Pribadi</h2>
-      <button class="modal-close" type="button" data-action="close-notes" aria-label="Tutup catatan">×</button>
-    </div>
-    <div class="drawer-content">
-      <form class="note-form" id="note-form">
-        <label for="note-title"><strong>Judul catatan</strong></label>
-        <input class="field" id="note-title" maxlength="120" placeholder="Misalnya: Sumber sejarah..." required>
-
-        <label for="note-text"><strong>Isi catatan</strong></label>
-        <textarea class="field" id="note-text" maxlength="5000" placeholder="Tulis catatan atau referensi di sini..." required></textarea>
-
-        <button class="btn btn-primary" type="submit">Simpan catatan</button>
-      </form>
-      <h3>Catatan tersimpan</h3>
-      <div id="notes-list"></div>
-    </div>
-  </aside>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script>
-    "use strict";
+    // Tahun otomatis
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
-    /*
-      KONTEN AWAL:
-  
-      */
-    
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
     const articles = [
-      {
-        id: 1,
-        title: "Mengenal Pustaka Tiga Zaman",
-        category: "Dokumentasi",
-        date: "18 Oktober 2026",
-        excerpt: "Mengenal tujuan dokumentasi sejarah, nilai budaya, dan warisan generasi.",
-        content: `
-          <p>Pustaka Tiga Zaman dibangun sebagai ruang literasi dan dokumentasi yang
-          menghubungkan jejak masa lalu, pemahaman masa kini, dan tanggung jawab
-          kepada generasi mendatang.</p>
-          <h3>Tiga landasan dokumentasi</h3>
-          <ul>
-            <li><strong>Jejak sejarah:</strong> menghimpun catatan, dokumen, foto, dan kesaksian.</li>
-            <li><strong>Nilai budaya:</strong> memahami makna tradisi secara bijaksana dan kontekstual.</li>
-            <li><strong>Warisan generasi:</strong> menyampaikan pengetahuan dengan sumber yang dapat ditelusuri.</li>
-          </ul>
-          <p>Setiap informasi perlu diperiksa sumber dan konteksnya. Apabila suatu
-          bagian masih berupa dugaan atau kesaksian, status tersebut perlu
-          dijelaskan kepada pembaca.</p>`
-      },
-      {
-        id: 2,
-        title: "Mengenal PSHWTM",
-        category: "Sejarah",
-        date: "18 Oktober 2026",
-        excerpt: "Pengantar mengenai Persaudaraan Setia Hati Winongo Tunas Muda dan pentingnya literasi sejarah.",
-        content: `
-          <p>PSHWTM merupakan singkatan dari Persaudaraan Setia Hati Winongo
-          Tunas Muda. Pembahasan mengenai perjalanan dan perkembangannya perlu
-          merujuk pada dokumen, arsip, kesaksian pelaku, serta sumber lain yang
-          dapat diuji.</p>
-          <h3>Membaca sejarah dengan cermat</h3>
-          <p>Nama, tanggal, peristiwa, dan peran tokoh sebaiknya diperiksa
-          melalui lebih dari satu sumber jika memungkinkan. Perbedaan kesaksian
-          perlu dicatat secara proporsional, bukan langsung dianggap sebagai
-          kepastian.</p>
-          <p>Artikel ini merupakan pengantar umum, bukan kronologi resmi atau
-          pengganti dokumen organisasi.</p>`
-      },
-      {
-        id: 3,
-        title: "Tokoh dan Jejak Pengabdian",
-        category: "Tokoh",
-        date: "18 Oktober 2026",
-        excerpt: "Cara mendokumentasikan biografi tokoh dengan menghormati sumber dan konteks sejarah.",
-        content: `
-          <p>Biografi tokoh merupakan salah satu cara menjaga ingatan kolektif.
-          Penulis perlu membedakan data biografis, kesaksian langsung,
-          pemberitaan, dan interpretasi yang berkembang kemudian.</p>
-          <h3>Unsur penting biografi</h3>
-          <ul>
-            <li>Nama dan riwayat hidup berdasarkan sumber yang dapat diperiksa.</li>
-            <li>Peran dan pengabdian dengan konteks waktu yang jelas.</li>
-            <li>Dokumen pendukung, foto, surat, atau kesaksian yang relevan.</li>
-            <li>Catatan apabila terdapat perbedaan versi atau data yang belum pasti.</li>
-          </ul>
-          <p>Penghormatan kepada tokoh dapat berjalan bersama sikap kritis
-          terhadap sumber sejarah.</p>`
-      },
-      {
-        id: 4,
-        title: "Persaudaraan dan Tanggung Jawab Sosial",
-        category: "Nilai dan Falsafah",
-        date: "18 Oktober 2026",
-        excerpt: "Memaknai persaudaraan sebagai sikap saling menghormati dan bertanggung jawab.",
-        content: `
-          <p>Persaudaraan tidak hanya tercermin dalam ikatan, tetapi juga
-          dalam perilaku sehari-hari: menjaga ucapan, menghormati sesama,
-          mengendalikan diri, dan ikut menciptakan lingkungan yang tenteram.</p>
-          <h3>Nilai dalam kehidupan sehari-hari</h3>
-          <ul>
-            <li>Mengutamakan dialog saat terjadi perbedaan.</li>
-            <li>Menghindari provokasi dan penyebaran kabar yang belum terverifikasi.</li>
-            <li>Menjaga martabat orang lain dalam ruang publik maupun digital.</li>
-            <li>Mengutamakan manfaat bagi masyarakat.</li>
-          </ul>
-          <p>Nilai persaudaraan semakin bermakna ketika diwujudkan dalam
-          tindakan yang bertanggung jawab.</p>`
-      },
-      {
-        id: 5,
-        title: "Tradisi sebagai Warisan Budaya",
-        category: "Budaya",
-        date: "18 Oktober 2026",
-        excerpt: "Pentingnya memahami tradisi melalui konteks, pelaku, dan sumber yang tepat.",
-        content: `
-          <p>Tradisi menyimpan pengalaman dan pengetahuan yang diwariskan
-          dari satu generasi ke generasi berikutnya. Memahaminya membutuhkan
-          perhatian pada konteks sejarah, masyarakat pendukung, serta makna
-          yang dijelaskan oleh pelakunya.</p>
-          <h3>Dokumentasi yang bertanggung jawab</h3>
-          <p>Tidak semua unsur tradisi harus dibuka ke ruang publik. Penulis
-          perlu menghormati batas-batas yang ditetapkan pemilik tradisi,
-          terutama apabila menyangkut hal yang bersifat pribadi atau sakral.</p>
-          <p>Foto, istilah, dan penjelasan sebaiknya digunakan dengan izin
-          yang sesuai serta keterangan yang tidak menyesatkan.</p>`
-      },
-      {
-        id: 6,
-        title: "Memeriksa Sumber Sejarah",
-        category: "Dokumentasi",
-        date: "18 Oktober 2026",
-        excerpt: "Panduan awal untuk membedakan dokumen primer, kesaksian, dan interpretasi.",
-        content: `
-          <p>Penelusuran sejarah akan lebih kuat apabila sumbernya dicatat
-          dengan jelas. Sebuah cerita yang sering diulang belum tentu
-          otomatis menjadi fakta yang terverifikasi.</p>
-          <h3>Langkah pemeriksaan</h3>
-          <ul>
-            <li>Catat judul dokumen, penulis, tanggal, dan tempat penerbitan.</li>
-            <li>Periksa apakah sumber merupakan dokumen sezaman atau tulisan kemudian.</li>
-            <li>Bandingkan dengan sumber independen lain.</li>
-            <li>Jelaskan bagian yang masih belum dapat dipastikan.</li>
-            <li>Simpan salinan dan keterangan asal dokumen sesuai ketentuan.</li>
-          </ul>
-          <p>Dengan cara ini, dokumentasi dapat menjadi bahan belajar yang
-          berguna dan dapat ditinjau kembali.</p>`
-      }
+      ...document.querySelectorAll(".article")
     ];
+    const noResult = document.getElementById("noResult");
 
-    const STORAGE_KEYS = {
-      bookmarks: "ptz_bookmarks_v1",
-      notes: "ptz_notes_v1",
-      theme: "ptz_theme_v1"
+    const detail = document.getElementById("articleDetail");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailText = document.getElementById("detailText");
+
+    let activeCategory = "";
+
+    // Materi edukasi dasar
+    const materials = {
+      sejarah: {
+        title: "Mengenal Sejarah PSHWTM",
+        text:
+          "Sejarah perlu dipelajari melalui penelusuran sumber " +
+          "dan dokumentasi yang dapat dipertanggungjawabkan.\n\n" +
+          "Dalam mempelajari sejarah PSHWTM, perhatikan kronologi, " +
+          "tokoh, dokumen, foto, kesaksian, dan konteks zamannya.\n\n" +
+          "Pisahkan fakta yang didukung bukti dari cerita lisan " +
+          "atau penafsiran yang masih membutuhkan verifikasi."
+      },
+
+      budaya: {
+        title: "Memahami Kearifan Budaya",
+        text:
+          "Budaya mencakup nilai, tradisi, pengetahuan, dan " +
+          "kebiasaan yang berkembang dalam masyarakat.\n\n" +
+          "Mempelajari budaya memerlukan sikap terbuka, " +
+          "penghormatan terhadap konteks, serta kesediaan " +
+          "memahami perbedaan antardaerah dan antargenerasi."
+      },
+
+      persaudaraan: {
+        title: "Persaudaraan dan Keteladanan",
+        text:
+          "Persaudaraan dapat diwujudkan melalui kepedulian, " +
+          "kejujuran, sikap saling menghormati, dan tanggung jawab.\n\n" +
+          "Keteladanan terlihat dalam tindakan sehari-hari: " +
+          "menjaga ucapan, menghargai perbedaan, menghindari " +
+          "provokasi, dan ikut menciptakan lingkungan yang damai."
+      },
+
+      literasi: {
+        title: "Cara Meneliti Sumber Sejarah",
+        text:
+          "1. Catat judul, tanggal, penulis, dan asal dokumen.\n\n" +
+          "2. Periksa apakah sumber merupakan dokumen asli, " +
+          "salinan, tulisan ulang, atau kesaksian.\n\n" +
+          "3. Bandingkan informasi dengan sumber lain yang " +
+          "independen.\n\n" +
+          "4. Catat perbedaan keterangan dan jangan mengubah " +
+          "dugaan menjadi fakta.\n\n" +
+          "5. Cantumkan referensi agar pembaca dapat menelusuri " +
+          "informasi lebih lanjut."
+      }
     };
 
-    let currentArticleId = null;
-    let toastTimer = null;
+    // Pencarian dan filter kategori
+    function filterArticles() {
+      const query = searchInput.value.trim().toLowerCase();
+      let count = 0;
 
-    function readStorage(key, fallback) {
-      try {
-        const value = localStorage.getItem(key);
-        return value === null ? fallback : JSON.parse(value);
-      } catch (error) {
-        console.warn("Data lokal tidak dapat dibaca:", key, error);
-        return fallback;
-      }
-    }
+      articles.forEach(article => {
+        const content = article.textContent.toLowerCase();
+        const category = article.dataset.category;
 
-    function writeStorage(key, value) {
-      try {
-        localStorage.setItem(key, JSON.stringify(value));
-        return true;
-      } catch (error) {
-        console.warn("Data lokal tidak dapat disimpan:", key, error);
-        showToast("Penyimpanan browser tidak tersedia atau penuh.");
-        return false;
-      }
-    }
+        const matchesText = content.includes(query);
+        const matchesCategory =
+          !activeCategory || category === activeCategory;
 
-    function getBookmarks() {
-      const data = readStorage(STORAGE_KEYS.bookmarks, []);
-      return Array.isArray(data) ? data.filter(Number.isFinite) : [];
-    }
+        const visible = matchesText && matchesCategory;
 
-    function getNotes() {
-      const data = readStorage(STORAGE_KEYS.notes, []);
-      return Array.isArray(data) ? data : [];
-    }
+        article.style.display = visible ? "" : "none";
 
-    function findArticle(id) {
-      return articles.find(article => article.id === Number(id));
-    }
-
-    function escapeHTML(value) {
-      return String(value).replace(/[&<>"']/g, character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      })[character]);
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
-    }
-
-    function updateStats() {
-      document.getElementById("stat-articles").textContent = articles.length;
-      document.getElementById("stat-bookmarks").textContent = getBookmarks().length;
-      document.getElementById("stat-notes").textContent = getNotes().length;
-      document.getElementById("bookmark-count").textContent = getBookmarks().length;
-    }
-
-    function renderArticles() {
-      const search = document.getElementById("search-input").value
-        .trim().toLocaleLowerCase("id");
-      const category = document.getElementById("category-filter").value;
-      const saved = getBookmarks();
-
-      const filtered = articles.filter(article => {
-        const matchesCategory = category === "Semua" || article.category === category;
-        const searchable = [
-          article.title,
-          article.category,
-          article.excerpt,
-          article.content
-        ].join(" ").toLocaleLowerCase("id");
-
-        return matchesCategory && searchable.includes(search);
+        if (visible) count++;
       });
 
-      document.getElementById("result-count").textContent =
-        filtered.length + (filtered.length === 1 ? " artikel" : " artikel");
-
-      const grid = document.getElementById("article-grid");
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div class="empty-state">
-            <strong>Artikel tidak ditemukan.</strong>
-            <p>Coba kata kunci lain atau pilih kategori berbeda.</p>
-            <button class="btn" type="button" data-action="reset-filters">Reset pencarian</button>
-          </div>`;
-        return;
-      }
-      grid.innerHTML = filtered.map(article => {
-        const isSaved = saved.includes(article.id);
-
-        return `
-          <article class="article-card">
-            <div class="article-art">
-              <span>${escapeHTML(article.category)}</span>
-            </div>
-            <div class="article-content">
-              <div class="article-meta">${escapeHTML(article.date)} · ${escapeHTML(article.category)}</div>
-              <h3>${escapeHTML(article.title)}</h3>
-              <p>${escapeHTML(article.excerpt)}</p>
-              <div class="article-actions">
-                <button class="btn btn-primary" type="button"
-                  data-action="open-article" data-id="${article.id}">
-                  Baca artikel →
-                </button>
-                <button class="btn" type="button"
-                  data-action="toggle-bookmark" data-id="${article.id}"
-                  aria-label="${isSaved ? "Hapus dari arsip" : "Simpan ke arsip"}">
-                  ${isSaved ? "♥ Tersimpan" : "♡ Simpan"}
-                </button>
-              </div>
-            </div>
-          </article>`;
-      }).join("");
+      noResult.style.display = count === 0 ? "block" : "none";
     }
 
-    function openArticle(id) {
-      const article = findArticle(id);
-      if (!article) {
-        showToast("Artikel tidak ditemukan.");
-        return;
-      }
+    searchInput.addEventListener("input", () => {
+      activeCategory = "";
+      filterArticles();
+    });
 
-      currentArticleId = article.id;
-      document.getElementById("modal-title").textContent = article.title;
-      document.getElementById("modal-meta").textContent =
-        article.date + " · " + article.category;
-      document.getElementById("modal-body").innerHTML = article.content;
-
-      updateModalBookmarkButton();
-
-      const overlay = document.getElementById("article-overlay");
-      overlay.classList.add("open");
-      overlay.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-
-      document.querySelector('[data-action="close-article"]').focus();
-    }
-    function updateModalBookmarkButton() {
-      const button = document.getElementById("modal-bookmark");
-      const saved = getBookmarks().includes(currentArticleId);
-      button.textContent = saved ? "♥ Hapus dari arsip" : "♡ Simpan arsip";
-    }
-
-    function toggleBookmark(id) {
-      const article = findArticle(id);
-      if (!article) return;
-
-      let saved = getBookmarks();
-
-      if (saved.includes(article.id)) {
-        saved = saved.filter(savedId => savedId !== article.id);
-        showToast("Artikel dihapus dari arsip.");
-      } else {
-        saved.push(article.id);
-        showToast("Artikel berhasil disimpan.");
-      }
-
-      if (writeStorage(STORAGE_KEYS.bookmarks, saved)) {
-        renderArticles();
-        renderBookmarks();
-        updateStats();
-        updateModalBookmarkButton();
-      }
-    }
-
-    function renderBookmarks() {
-      const saved = getBookmarks();
-      const list = document.getElementById("bookmarks-list");
-
-      const validSaved = saved.filter(id => findArticle(id));
-
-      if (validSaved.length === 0) {
-        list.innerHTML = `
-          <div class="empty-state">
-            <strong>Belum ada arsip tersimpan.</strong>
-            <p>Tekan tombol Simpan pada artikel untuk menambahkannya di sini.</p>
-          </div>`;
-        return;
-      }
-
-      list.innerHTML = validSaved.map(id => {
-        const article = findArticle(id);
-
-        return `
-          <div class="saved-item">
-            <h3>${escapeHTML(article.title)}</h3>
-            <p>${escapeHTML(article.category)} · ${escapeHTML(article.date)}</p>
-            <div class="saved-item-actions">
-              <button class="btn btn-primary" type="button"
-                data-action="read-saved" data-id="${article.id}">Baca</button>
-              <button class="btn" type="button"
-                data-action="remove-bookmark" data-id="${article.id}">Hapus</button>
-            </div>
-          </div>`;
-      }).join("");
-    }
-
-    function openDrawer(name) {
-      const drawer = document.getElementById(name);
-      if (!drawer) return;
-
-      closeOtherDrawers(name);
-      drawer.classList.add("open");
-      drawer.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-
-      if (name === "bookmarks-drawer") renderBookmarks();
-      if (name === "notes-drawer") renderNotes();
-    }
-
-    function closeDrawer(name) {
-      const drawer = document.getElementById(name);
-      if (!drawer) return;
-
-      drawer.classList.remove("open");
-      drawer.setAttribute("aria-hidden", "true");
-      restoreBodyScroll();
-    }
-
-    function closeOtherDrawers(exceptName) {
-      ["bookmarks-drawer", "notes-drawer"].forEach(name => {
-        if (name !== exceptName) {
-          const drawer = document.getElementById(name);
-          drawer.classList.remove("open");
-          drawer.setAttribute("aria-hidden", "true");
-        }
-      });
-    }
-
-    function restoreBodyScroll() {
-      const modalOpen = document.getElementById("article-overlay").classList.contains("open");
-      const bookmarksOpen = document.getElementById("bookmarks-drawer").classList.contains("open");
-      const notesOpen = document.getElementById("notes-drawer").classList.contains("open");
-
-      document.body.style.overflow =
-        modalOpen || bookmarksOpen || notesOpen ? "hidden" : "";
-    }
-
-    function renderNotes() {
-      const notes = getNotes();
-      const list = document.getElementById("notes-list");
-      if (notes.length === 0) {
-        list.innerHTML = `<p class="muted">Belum ada catatan. Catatan yang disimpan akan tampil di sini.</p>`;
-        return;
-      }
-
-      list.innerHTML = notes.map(note => `
-        <div class="note-card">
-          <strong>${escapeHTML(note.title || "Catatan tanpa judul")}</strong>
-          <p>${escapeHTML(note.text || "")}</p>
-          <small>${escapeHTML(note.date || "")}</small>
-          <div style="margin-top:8px">
-            <button class="btn" type="button" data-action="delete-note"
-              data-id="${escapeHTML(note.id)}">Hapus catatan</button>
-          </div>
-        </div>
-      `).join("");
-    }
-    function saveNote(event) {
+    searchForm.addEventListener("submit", event => {
       event.preventDefault();
+      activeCategory = "";
+      filterArticles();
+    });
 
-      const title = document.getElementById("note-title").value.trim();
-      const text = document.getElementById("note-text").value.trim();
-
-      if (!title || !text) {
-        showToast("Isi judul dan catatan terlebih dahulu.");
-        return;
-      }
-
-      const notes = getNotes();
-      notes.unshift({
-        id: Date.now().toString() + "-" + Math.random().toString(36).slice(2, 7),
-        title,
-        text,
-        date: new Date().toLocaleString("id-ID")
+    // Klik kategori
+    document.querySelectorAll("[data-filter-category]")
+      .forEach(link => {
+        link.addEventListener("click", () => {
+          activeCategory = link.dataset.filterCategory;
+          searchInput.value = "";
+          filterArticles();
+        });
       });
 
-      if (writeStorage(STORAGE_KEYS.notes, notes)) {
-        document.getElementById("note-form").reset();
-        renderNotes();
-        updateStats();
-        showToast("Catatan berhasil disimpan.");
-      }
-    }
+    // Buka artikel
+    document.querySelectorAll("[data-article]")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          const key = button.dataset.article;
+          const material = materials[key];
 
-    function deleteNote(id) {
-      const notes = getNotes().filter(note => String(note.id) !== String(id));
+          if (!material) return;
 
-      if (writeStorage(STORAGE_KEYS.notes, notes)) {
-        renderNotes();
-        updateStats();
-        showToast("Catatan dihapus.");
-      }
-    }
+          detailTitle.textContent = material.title;
+          detailText.textContent = material.text;
+          detail.style.display = "block";
 
-    function setTheme(theme) {
-      const dark = theme === "dark";
-      document.body.classList.toggle("dark", dark);
+          detail.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        });
+      });
 
-      const button = document.getElementById("theme-button");
-      button.textContent = dark ? "☀" : "☾";
-      button.setAttribute("aria-label", dark ? "Gunakan tema terang" : "Gunakan tema gelap");
-
-      writeStorage(STORAGE_KEYS.theme, dark ? "dark" : "light");
-    }
-
-    function toggleTheme() {
-      const dark = document.body.classList.contains("dark");
-      setTheme(dark ? "light" : "dark");
-    }
-
-    function resetFilters() {
-      document.getElementById("search-input").value = "";
-
-      document.getElementById("search-input").value = "";
-      document.getElementById("category-filter").value = "Semua";
-      renderArticles();
-    }
-
-    function noteCurrentArticle() {
-      const article = findArticle(currentArticleId);
-      if (!article) return;
-
-      closeArticle();
-      openDrawer("notes-drawer");
-      document.getElementById("note-title").value = "Catatan: " + article.title;
-      document.getElementById("note-text").focus();
-    }
-
-    /*
-      Satu event listener untuk tombol-tombol yang dibuat ulang
-      saat daftar artikel dirender.
-    */
-    document.addEventListener("click", event => {
-      const button = event.target.closest("[data-action]");
-      if (!button) return;
-
-      const action = button.dataset.action;
-      const id = button.dataset.id;
-
-      switch (action) {
-        case "open-article":
-          openArticle(id);
-          break;
-
-        case "close-article":
-          closeArticle();
-          break;
-
-        case "toggle-bookmark":
-        case "remove-bookmark":
-          toggleBookmark(id);
-          break;
-
-        case "toggle-current-bookmark":
-          if (currentArticleId !== null) toggleBookmark(currentArticleId);
-          break;
-
-          case "open-bookmarks":
-          openDrawer("bookmarks-drawer");
-          break;
-
-        case "close-bookmarks":
-          closeDrawer("bookmarks-drawer");
-          break;
-
-        case "open-notes":
-          openDrawer("notes-drawer");
-          break;
-
-        case "close-notes":
-          closeDrawer("notes-drawer");
-          break;
-
-        case "read-saved":
-          closeDrawer("bookmarks-drawer");
-          openArticle(id);
-          break;
-
-        case "delete-note":
-          deleteNote(id);
-          break;
-
-        case "toggle-theme":
-          toggleTheme();
-          break;
-
-        case "reset-filters":
-          resetFilters();
-          break;
-
-        case "note-current-article":
-          noteCurrentArticle();
-          break;
-      }
-    });
-
-    document.getElementById("search-input").addEventListener("input", renderArticles);
-    document.getElementById("category-filter").addEventListener("change", renderArticles);
-    document.getElementById("note-form").addEventListener("submit", saveNote);
-
-    // Klik area luar modal untuk menutupnya.
-    document.getElementById("article-overlay").addEventListener("click", event => {
-      if (event.target.id === "article-overlay") closeArticle();
-    });
-
-    // Tombol Escape menutup modal atau panel yang sedang terbuka.
-    document.addEventListener("keydown", event => {
-      if (event.key !== "Escape") return;
-
-      closeArticle();
-      closeDrawer("bookmarks-drawer");
-      closeDrawer("notes-drawer");
-    });
-
-    function initialize() {
-      document.getElementById("current-year").textContent = new Date().getFullYear();
-
-      const savedTheme = readStorage(STORAGE_KEYS.theme, "light");
-      setTheme(savedTheme === "dark" ? "dark" : "light");
-
-      renderArticles();
-      renderBookmarks();
-      renderNotes();
-      updateStats();
-    }
-
-    initialize();
+    // Tutup artikel
+    document.getElementById("closeDetail")
+      .addEventListener("click", () => {
+        detail.style.display = "none";
+      });
   </script>
+
 </body>
 </html>
