@@ -163,18 +163,43 @@ const daftarFile = files
         
 
 
-        const data = cocok[1];
-        const isi = cocok[2].trim();
+        
+const data = cocok[1];
+const isi = cocok[2].trim();
 
-        return {
-          fileName: file.name,
-          judul: ambilField(data, "title") || file.name,
-          tanggal: ambilField(data, "date"),
-          kategori: ambilField(data, "category"),
-          ringkasan: ambilField(data, "description"),
-          gambar: ambilField(data, "image"),
-          isi
-        };
+let waktuUnggah = "";
+
+try {
+  const urlRiwayat =
+    "https://api.github.com/repos/ananbeni/pustaka-tiga-zaman/commits?path=" +
+    encodeURIComponent("berita/" + file.name) +
+    "&per_page=100";
+
+  const responsRiwayat = await fetch(urlRiwayat);
+
+  if (responsRiwayat.ok) {
+    const riwayat = await responsRiwayat.json();
+
+    if (Array.isArray(riwayat) && riwayat.length > 0) {
+      waktuUnggah =
+        riwayat[riwayat.length - 1]?.commit?.committer?.date || "";
+    }
+  }
+} catch (error) {
+  console.warn("Waktu unggah tidak tersedia:", file.name);
+}
+
+return {
+  fileName: file.name,
+  judul: ambilField(data, "title") || file.name,
+  tanggal: ambilField(data, "date"),
+  kategori: ambilField(data, "category"),
+  ringkasan: ambilField(data, "description"),
+  gambar: ambilField(data, "image"),
+  waktuUnggah,
+  isi
+};
+
       })
     );
 
