@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171717">
+  <title>Artikel | PUSTAKA TIGA ZAMAN</title>
+  <meta name="description" content="Arsip sejarah dan budaya PUSTAKA TIGA ZAMAN.">
+
+  <style>
+    :root {
+      --kuning: #e5b923;
+      --hitam: #171717;
+      --putih: #fffdf5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.8;
+      color: #222;
+      background: #f5f2e8;
+    }
+
+    header {
+      background: var(--hitam);
+      color: var(--kuning);
+      padding: 22px 16px;
+      border-bottom: 5px solid var(--kuning);
+    }
+
+    .kepala, main, footer {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      color: white;
+      font-size: .9rem;
+    }
+
+    main {
+      padding: 24px 16px 40px;
+    }
+
+    .kembali {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #594300;
+      font-weight: bold;
+    }
+
+    article {
+      background: var(--putih);
+      border: 1px solid #e0d4a8;
+      border-radius: 12px;
+      padding: clamp(16px, 4vw, 32px);
+      box-shadow: 0 4px 16px #0000000a;
+    }
+
+    h2 {
+      line-height: 1.35;
+      font-size: clamp(1.6rem, 5vw, 2.3rem);
+      color: var(--hitam);
+    }
+
+    .metadata {
+      color: #705b1c;
+      font-size: .9rem;
+    }
+
+    .foto-utama {
+      display: block;
+      width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      margin: 22px auto;
+      background: #eee;
+      border-radius: 8px;
+    }
+
+    .isi-artikel {
+      overflow-wrap: anywhere;
+    }
+
+    .isi-artikel img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .isi-artikel a {
+      color: #765700;
+    }
+
+    #pesan {
+      padding: 18px;
+      background: white;
+      border-radius: 8px;
+    }
+
+    footer {
+      padding: 20px 16px;
+      color: #555;
+      font-size: .85rem;
+      text-align: center;
+    }
+
+    button {
+      background: var(--kuning);
+      color: var(--hitam);
+      border: 0;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="kepala">
+      <h1>PUSTAKA TIGA ZAMAN</h1>
+      <p>JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI</p>
+    </div>
+  </header>
+
+  <main>
+    <a class="kembali" href="/">← Kembali ke halaman utama</a>
+
+    <div id="pesan">Memuat artikel...</div>
+
+    <article id="artikel" hidden>
+      <div id="kategori" class="metadata"></div>
+      <h2 id="judul"></h2>
+      <div id="tanggal" class="metadata"></div>
+      <img id="foto" class="foto-utama" alt="" hidden>
+      <p id="ringkasan"></p>
+      <div id="isi" class="isi-artikel"></div>
+
+      <hr>
+      <button id="bagikan" type="button">Bagikan artikel</button>
+    </article>
+  </main>
+
+  <footer>
+    PUSTAKA TIGA ZAMAN — Jejak Sejarah, Nilai Budaya, Warisan Generasi
+  </footer>
+
+  <script>
+    const parameter = new URLSearchParams(location.search);
+    const namaFile = parameter.get("berita");
+    const pesan = document.getElementById("pesan");
+    const artikel = document.getElementById("artikel");
+
+    function aman(teks) {
+      return String(teks || "").replace(/[&<>"']/g, c => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[c]);
+    }
+
+    function field(teks, nama) {
+      const pola = new RegExp(
+        "^" + nama + ":\\s*(.*?)\\s*$", "m"
+      );
+      const hasil = teks.match(pola);
+      return hasil
+        ? hasil[1].replace(/^['"]|['"]$/g, "")
+        : "";
+    }
+
+    function markdown(teks) {
+      let html = aman(teks);
+
+      html = html.replace(
+        /!\[([^\]]*)\]\(([^)\s]+)\)/g,
+        (_, alt, url) => {
+          if (!url.startsWith("/") &&
+              !/^https?:\/\//i.test(url)) return "";
+          return `<img src="${aman(url)}" alt="${alt}" loading="lazy">`;
+        }
+      );
+
+      html = html.replace(
+        /\[([^\]]+)\]\((https?:\/\/[^)\s]+|\/[^)\s]*)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+      );
+
+      html = html
+        .replace(/^### (.+)$/gm, "<h4>$1</h4>")
+        .replace(/^## (.+)$/gm, "<h3>$1</h3>")
+        .replace(/^# (.+)$/gm, "<h2>$1</h2>")
+        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.+?)\*/g, "<em>$1</em>");
+
+      return html.split(/\n\s*\n/)
+        .map(paragraf => {
+          const isi = paragraf.trim();
+          if (!isi) return "";
+          if (/^<(h[2-4]|img|ul|ol|li|blockquote)\b/i.test(isi)) {
+            return isi;
+          }
+          return "<p>" + isi.replace(/\n/g, "<br>") + "</p>";
+        }).join("");
+    }
+
+    async function muatArtikel() {
+      try {
+        if (!namaFile || !/^[a-zA-Z0-9._-]+\.md$/.test(namaFile)) {
+          throw new Error("Alamat artikel tidak valid.");
+        }
+
+        const alamat =
+          "https://raw.githubusercontent.com/ananbeni/" +
+          "pustaka-tiga-zaman/main/berita/" +
+          encodeURIComponent(namaFile);
+
+        const respons = await fetch(alamat);
+
+        if (!respons.ok) {
+          throw new Error("File artikel tidak ditemukan.");
+        }
+
+        const teks = await respons.text();
+        const bagian = teks.match(
+          /^---\s*\r?\n([\s\S]*?)\r?\n---\s*(?:\r?\n|$)([\s\S]*)$/
+        );
+
+        if (!bagian) {
+          throw new Error("Format artikel belum sesuai.");
+        }
+
+        const data = bagian[1];
+        const isi = bagian[2].trim();
+        const judul = field(data, "title") || "Artikel";
+        const tanggal = field(data, "date");
+        const kategori = field(data, "category");
+        const ringkasan = field(data, "description");
+        const gambar = field(data, "image");
+
+        document.title = judul + " | PUSTAKA TIGA ZAMAN";
+        document.getElementById("judul").textContent = judul;
+        document.getElementById("kategori").textContent = kategori;
+        document.getElementById("tanggal").textContent = tanggal;
+        document.getElementById("ringkasan").textContent = ringkasan;
+        document.getElementById("isi").innerHTML = markdown(isi);
+
+        const foto = document.getElementById("foto");
+        if (gambar) {
+          foto.src = gambar;
+          foto.alt = judul;
+          foto.hidden = false;
+          foto.onerror = () => foto.hidden = true;
+        }
+
+        document.getElementById("bagikan").onclick = async () => {
+          try {
+            if (navigator.share) {
+              await navigator.share({
+                title: judul,
+                text: ringkasan || judul,
+                url: location.href
+              });
+            } else {
+              await navigator.clipboard.writeText(location.href);
+              alert("Tautan artikel berhasil disalin.");
+            }
+          } catch (e) {
+            if (e.name !== "AbortError") {
+              prompt("Salin tautan artikel ini:", location.href);
+            }
+          }
+        };
+
+        pesan.hidden = true;
+        artikel.hidden = false;
+      } catch (error) {
+        pesan.textContent =
+          error.message +
+          " Periksa nama file dan pastikan artikel sudah tersimpan di GitHub.";
+      }
+    }
+
+    muatArtikel();
+  </script>
+</body>
+</html>
