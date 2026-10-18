@@ -1,0 +1,155 @@
+
+name: Buat Preview WhatsApp
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "berita/**"
+      - ".github/workflows/buat-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ambil kode website
+        uses: actions/checkout@v4
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Buat halaman preview berita
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import quote
+          import html
+          import re
+          import shutil
+
+          BASE = "https://pustakatigazaman.my.id"
+          BERITA = Path("berita")
+          OUTPUT = Path("pratinjau")
+
+          def get_value(front, key):
+              match = re.search(
+                  r"(?m)^" + re.escape(key) + r"\s*:\s*(.*?)\s*$",
+                  front
+              )
+              if not match:
+                  return ""
+              value = match.group(1).strip()
+              if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+                  value = value[1:-1]
+              return value.strip()
+
+          if not BERITA.exists():
+              raise SystemExit("Folder berita tidak ditemukan.")
+
+          if OUTPUT.exists():
+              shutil.rmtree(OUTPUT)
+          OUTPUT.mkdir(parents=True)
+
+          jumlah = 0
+
+          for file in sorted(BERITA.glob("*.md")):
+              isi = file.read_text(encoding="utf-8")
+              match = re.match(
+                  r"\A---\s*\r?\n(.*?)\r?\n---\s*(?:\r?\n|$)",
+                  isi,
+                  re.S
+              )
+              if not match:
+                  print("Lewati tanpa front matter:", file.name)
+                  continue
+
+              front = match.group(1)
+              title = get_value(front, "title") or file.stem
+              date = get_value(front, "date")
+              category = get_value(front, "category")
+              summary = (
+                  get_value(front, "description")
+                  or get_value(front, "ringkasan")
+                  or title
+              )
+              image = get_value(front, "image")
+
+              if not image:
+                  print("Lewati tanpa image:", file.name)
+                  continue
+
+              if image.startswith(("http://", "https://")):
+                  image_url = image
+              else:
+                  image_url = BASE + "/" + image.lstrip("/")
+
+              folder = OUTPUT / file.stem
+              folder.mkdir(parents=True, exist_ok=True)
+
+              preview_url = (
+                  BASE + "/pratinjau/" + quote(file.stem) + "/"
+              )
+              article_url = (
+                  BASE + "/artikel.html?berita=" + quote(file.name, safe="")
+              )
+
+              esc = lambda value: html.escape(value, quote=True)
+
+              page = f"""<!DOCTYPE html>
+          <html lang="id">
+          <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>{esc(title)} - PUSTAKA TIGA ZAMAN</title>
+          <meta name="description" content="{esc(summary)}">
+          <meta property="og:type" content="article">
+          <meta property="og:site_name" content="PUSTAKA TIGA ZAMAN">
+          <meta property="og:title" content="{esc(title)}">
+          <meta property="og:description" content="{esc(summary)}">
+          <meta property="og:url" content="{esc(preview_url)}">
+          <meta property="og:image" content="{esc(image_url)}">
+          <meta property="og:image:secure_url" content="{esc(image_url)}">
+          <meta property="og:image:alt" content="{esc(title)}">
+          <meta name="twitter:card" content="summary_large_image">
+          <meta name="twitter:title" content="{esc(title)}">
+          <meta name="twitter:description" content="{esc(summary)}">
+          <meta name="twitter:image" content="{esc(image_url)}">
+          <meta http-equiv="refresh" content="0;url={esc(article_url)}">
+          </head>
+          <body>
+          <p>Membuka artikel: <a href="{esc(article_url)}">{esc(title)}</a></p>
+          <p><img src="{esc(image_url)}" alt="{esc(title)}" style="max-width:100%"></p>
+          <p>{esc(summary)}</p>
+          <script>location.replace({article_url!r});</script>
+          </body>
+          </html>
+          """
+
+              (folder / "index.html").write_text(
+                  page, encoding="utf-8"
+              )
+              jumlah += 1
+              print("Dibuat:", folder / "index.html")
+
+          print("Jumlah preview dibuat:", jumlah)
+          PY
+
+      - name: Simpan halaman preview ke branch main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A pratinjau
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan preview."
+          else
+            git commit -m "Buat preview WhatsApp otomatis"
+            git push
+          fi
