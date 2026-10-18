@@ -198,8 +198,9 @@ const judul = document.createElement("h3");
 const tautanJudul = document.createElement("a");
 
 tautanJudul.href =
-  "artikel.html?berita=" +
-  encodeURIComponent(berita.fileName);
+  "pratinjau/" +
+  encodeURIComponent(berita.fileName.replace(/\.md$/i, "")) +
+  "/";
 
 tautanJudul.textContent = berita.judul;
 tautanJudul.style.cssText =
@@ -239,8 +240,9 @@ isiKartu.appendChild(judul);
 const baca = document.createElement("a");
 
 baca.href =
-  "artikel.html?berita=" +
-  encodeURIComponent(berita.fileName);
+  "pratinjau/" +
+  encodeURIComponent(berita.fileName.replace(/\.md$/i, "")) +
+  "/";
 
 baca.textContent = "Baca Selengkapnya →";
 
