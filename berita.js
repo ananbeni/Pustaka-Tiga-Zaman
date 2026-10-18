@@ -251,7 +251,7 @@ isiKartu.appendChild(baca);
 
       const isiArtikel = document.createElement("div");
       isiArtikel.className = "isi-artikel";
-      isiArtikel.innerHTML = ubahMarkdown(berita.isi);
+      
       isiKartu.appendChild(isiArtikel);
 
       kartu.appendChild(isiKartu);
