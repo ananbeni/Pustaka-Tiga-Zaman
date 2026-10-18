@@ -134,9 +134,19 @@ async function muatBerita() {
     }
 
     const files = await respons.json();
-    const daftarFile = files
-      .filter(file => file.name.endsWith(".md"))
-      .sort((a, b) => b.name.localeCompare(a.name));
+const daftarFile = files
+  .filter(file => file.name.endsWith(".md"))
+  .sort((a, b) => {
+    const tanggalA = a.name.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || "";
+    const tanggalB = b.name.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || "";
+
+    if (tanggalA !== tanggalB) {
+      return tanggalB.localeCompare(tanggalA);
+    }
+
+    return b.name.localeCompare(a.name);
+  });
+
 
     const artikel = await Promise.all(
       daftarFile.map(async file => {
