@@ -181,9 +181,11 @@ try {
     const riwayat = await responsRiwayat.json();
 
     if (Array.isArray(riwayat) && riwayat.length > 0) {
-      waktuUnggah =
-        riwayat[riwayat.length - 1]?.commit?.committer?.date || "";
-    }
+  waktuUnggah =
+    riwayat[0]?.commit?.committer?.date ||
+    riwayat[0]?.commit?.author?.date ||
+    "";
+}
   }
 } catch (error) {
   console.warn("Waktu unggah tidak tersedia:", file.name);
@@ -216,14 +218,8 @@ valid.sort((a, b) => {
     return waktuB - waktuA;
   }
 
-  const tanggalA = a.tanggal || "";
-  const tanggalB = b.tanggal || "";
-
-  if (tanggalA !== tanggalB) {
-    return tanggalB.localeCompare(tanggalA);
-  }
-
-  return b.fileName.localeCompare(a.fileName);
+  return (b.tanggal || "").localeCompare(a.tanggal || "") ||
+    b.fileName.localeCompare(a.fileName);
 });
 
 
