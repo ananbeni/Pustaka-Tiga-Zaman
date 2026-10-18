@@ -1,4 +1,8 @@
-media: media
+
+media:
+  input: media
+  output: /media
+  
 
 content:
   - name: berita
@@ -31,10 +35,17 @@ content:
         required: true
       - name: description
         label: Ringkasan berita
-        type: text
+        type: text 
       - name: image
         label: Foto utama
-        type: string
+        type: image
+        options:
+          extensions:
+            - jpg
+            - jpeg
+            - png
+            - webp
+
       - name: body
         label: Isi berita
         type: rich-text
