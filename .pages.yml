@@ -1,0 +1,41 @@
+media: media
+
+content:
+  - name: berita
+    label: Berita PUSTAKA TIGA ZAMAN
+    type: collection
+    path: berita
+    filename: "{year}-{month}-{day}-{primary}.md"
+    format: yaml-frontmatter
+    view:
+      primary: title
+      fields:
+        - title
+        - date
+        - category
+      sort:
+        - date
+      order: desc
+    fields:
+      - name: title
+        label: Judul berita
+        type: string
+        required: true
+      - name: date
+        label: Tanggal berita
+        type: date
+        required: true
+      - name: category
+        label: Kategori
+        type: string
+        required: true
+      - name: description
+        label: Ringkasan berita
+        type: text
+      - name: image
+        label: Foto utama
+        type: string
+      - name: body
+        label: Isi berita
+        type: rich-text
+        
