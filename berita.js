@@ -235,6 +235,20 @@ isiKartu.appendChild(judul);
         isiKartu.appendChild(ringkasan);
       }
 
+      
+const baca = document.createElement("a");
+
+baca.href =
+  "artikel.html?berita=" +
+  encodeURIComponent(berita.fileName);
+
+baca.textContent = "Baca Selengkapnya →";
+
+baca.style.cssText =
+  "display:inline-block;margin-top:10px;color:#9A6B00;font-weight:bold;text-decoration:none;";
+
+isiKartu.appendChild(baca);
+
       const isiArtikel = document.createElement("div");
       isiArtikel.className = "isi-artikel";
       isiArtikel.innerHTML = ubahMarkdown(berita.isi);
