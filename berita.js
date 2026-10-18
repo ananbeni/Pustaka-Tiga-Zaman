@@ -153,13 +153,15 @@ async function muatBerita() {
         const data = cocok[1];
         const isi = cocok[2].trim();
 
-        return {
-          judul: ambilField(data, "title") || file.name,
-          tanggal: ambilField(data, "date"),
-          kategori: ambilField(data, "category"),
-          ringkasan: ambilField(data, "description"),
-          gambar: ambilField(data, "image"),
-          isi
+        
+return {
+  fileName: file.name,
+  judul: ambilField(data, "title") || file.name,
+  tanggal: ambilField(data, "date"),
+  kategori: ambilField(data, "category"),
+  ringkasan: ambilField(data, "description"),
+  gambar: ambilField(data, "image"),
+  isi
         };
       })
     );
