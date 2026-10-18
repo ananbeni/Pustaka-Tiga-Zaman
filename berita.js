@@ -162,33 +162,37 @@ const daftarFile = files
 
         
 
-const data = cocok[1];
-const isi = cocok[2].trim();
 
-return {
-  fileName: file.name,
-  judul: ambilField(data, "title") || file.name,
-  tanggal: ambilField(data, "date"),
-  kategori: ambilField(data, "category"),
-  ringkasan: ambilField(data, "description"),
-  gambar: ambilField(data, "image"),
-  isi
-};
+        const data = cocok[1];
+        const isi = cocok[2].trim();
 
-
+        return {
+          fileName: file.name,
+          judul: ambilField(data, "title") || file.name,
+          tanggal: ambilField(data, "date"),
+          kategori: ambilField(data, "category"),
+          ringkasan: ambilField(data, "description"),
+          gambar: ambilField(data, "image"),
+          isi
+        };
+      })
+    );
 
     daftar.replaceChildren();
 
-    
-const valid = artikel.filter(Boolean);
+    const valid = artikel.filter(Boolean);
 
-valid.sort((a, b) => {
-  const waktuA = Date.parse(a.waktuUnggah) || 0;
-  const waktuB = Date.parse(b.waktuUnggah) || 0;
+    valid.sort((a, b) => {
+      const tanggalA = a.tanggal || "";
+      const tanggalB = b.tanggal || "";
 
-  return waktuB - waktuA ||
-    b.fileName.localeCompare(a.fileName);
-});
+      if (tanggalA !== tanggalB) {
+        return tanggalB.localeCompare(tanggalA);
+      }
+
+      return b.fileName.localeCompare(a.fileName);
+    });
+
 
 
     if (valid.length === 0) {
