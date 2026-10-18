@@ -207,16 +207,25 @@ return {
 
     const valid = artikel.filter(Boolean);
 
-    valid.sort((a, b) => {
-      const tanggalA = a.tanggal || "";
-      const tanggalB = b.tanggal || "";
+    
+valid.sort((a, b) => {
+  const waktuA = Date.parse(a.waktuUnggah) || 0;
+  const waktuB = Date.parse(b.waktuUnggah) || 0;
 
-      if (tanggalA !== tanggalB) {
-        return tanggalB.localeCompare(tanggalA);
-      }
+  if (waktuA !== waktuB) {
+    return waktuB - waktuA;
+  }
 
-      return b.fileName.localeCompare(a.fileName);
-    });
+  const tanggalA = a.tanggal || "";
+  const tanggalB = b.tanggal || "";
+
+  if (tanggalA !== tanggalB) {
+    return tanggalB.localeCompare(tanggalA);
+  }
+
+  return b.fileName.localeCompare(a.fileName);
+});
+
 
 
 
