@@ -273,7 +273,12 @@
               await navigator.share({
                 title: judul,
                 text: ringkasan || judul,
-                url: location.href
+                url: url: new URL(
+  "pratinjau/" +
+  new URLSearchParams(location.search).get("berita").replace(/\.md$/i, "") +
+  "/",
+  location.origin
+).href
               });
             } else {
               await navigator.clipboard.writeText(location.href);
