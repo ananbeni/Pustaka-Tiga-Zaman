@@ -191,9 +191,63 @@ async function muatBerita() {
       const isiKartu = document.createElement("div");
       isiKartu.className = "isi-kartu-berita";
 
-      const judul = document.createElement("h3");
-      judul.textContent = berita.judul;
-      isiKartu.appendChild(judul);
+      
+const judul = document.createElement("h3");
+const tombolJudul = document.createElement("button");
+
+tombolJudul.type = "button";
+tombolJudul.textContent = berita.judul;
+tombolJudul.style.cssText =
+  "background:none;border:0;padding:0;text-align:left;" +
+  "font-size:1.2rem;font-weight:bold;cursor:pointer;color:#171717;";
+
+judul.appendChild(tombolJudul);
+isiKartu.appendChild(judul);
+
+// Jendela untuk membaca berita lengkap
+tombolJudul.addEventListener("click", () => {
+  const jendela = document.createElement("dialog");
+  jendela.style.cssText =
+    "width:min(900px,92vw);max-height:85vh;overflow:auto;" +
+    "border:2px solid #d9ad22;border-radius:12px;padding:20px;";
+
+  const tutup = document.createElement("button");
+  tutup.textContent = "Tutup ✕";
+  tutup.style.cssText =
+    "background:#171717;color:white;padding:10px 16px;" +
+    "border:0;border-radius:6px;cursor:pointer;";
+
+  const konten = document.createElement("div");
+  const judulLengkap = document.createElement("h2");
+  judulLengkap.textContent = berita.judul;
+  konten.appendChild(judulLengkap);
+
+  const tanggalKategori = document.createElement("p");
+  tanggalKategori.textContent =
+    [berita.tanggal, berita.kategori].filter(Boolean).join(" • ");
+  konten.appendChild(tanggalKategori);
+
+  if (berita.gambar) {
+    const fotoLengkap = document.createElement("img");
+    fotoLengkap.src = berita.gambar;
+    fotoLengkap.alt = berita.judul;
+    fotoLengkap.style.cssText =
+      "display:block;width:100%;height:auto;object-fit:contain;margin:16px 0;";
+    konten.appendChild(fotoLengkap);
+  }
+
+  const isiLengkap = document.createElement("div");
+  isiLengkap.className = "isi-artikel";
+  isiLengkap.innerHTML = ubahMarkdown(berita.isi);
+  konten.appendChild(isiLengkap);
+
+  tutup.addEventListener("click", () => jendela.close());
+  jendela.append(tutup, konten);
+  document.body.appendChild(jendela);
+  jendela.addEventListener("close", () => jendela.remove(), { once: true });
+  jendela.showModal();
+});
+
 
       const meta = document.createElement("div");
       meta.className = "meta-berita";
