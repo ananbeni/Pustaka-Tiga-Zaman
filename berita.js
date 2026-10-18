@@ -160,10 +160,32 @@ const daftarFile = files
 
         if (!cocok) return null;
 
-        const data = cocok[1];
-        const isi = cocok[2].trim();
-
         
+const data = cocok[1];
+const isi = cocok[2].trim();
+
+let waktuUnggah = "";
+
+try {
+  const urlRiwayat =
+    "https://api.github.com/repos/ananbeni/pustaka-tiga-zaman/commits?path=" +
+    encodeURIComponent("berita/" + file.name) +
+    "&per_page=100";
+
+  const responsRiwayat = await fetch(urlRiwayat);
+
+  if (responsRiwayat.ok) {
+    const riwayat = await responsRiwayat.json();
+
+    if (Array.isArray(riwayat) && riwayat.length > 0) {
+      waktuUnggah =
+        riwayat[riwayat.length - 1]?.commit?.committer?.date || "";
+    }
+  }
+} catch (error) {
+  console.warn("Waktu unggah tidak tersedia:", file.name);
+}
+
 return {
   fileName: file.name,
   judul: ambilField(data, "title") || file.name,
@@ -171,14 +193,24 @@ return {
   kategori: ambilField(data, "category"),
   ringkasan: ambilField(data, "description"),
   gambar: ambilField(data, "image"),
+  waktuUnggah,
   isi
-        };
-      })
-    );
+};
+
 
     daftar.replaceChildren();
 
-    const valid = artikel.filter(Boolean);
+    
+const valid = artikel.filter(Boolean);
+
+valid.sort((a, b) => {
+  const waktuA = Date.parse(a.waktuUnggah) || 0;
+  const waktuB = Date.parse(b.waktuUnggah) || 0;
+
+  return waktuB - waktuA ||
+    b.fileName.localeCompare(a.fileName);
+});
+
 
     if (valid.length === 0) {
       daftar.textContent =
