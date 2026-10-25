@@ -121,15 +121,25 @@ jobs:
           <meta name="twitter:card" content="summary_large_image">
           <meta name="twitter:title" content="{esc(title)}">
           <meta name="twitter:description" content="{esc(summary)}">
-          <meta name="twitter:image" content="{esc(image_url)}"><meta http-equiv="refresh" content="0;url={esc(article_url)}">
+          <meta name="twitter:image" content="{esc(image_url)}">
           
           </head>
-          <body>
-          <p>Membuka artikel: <a href="{esc(article_url)}">{esc(title)}</a></p>
-          <p><img src="{esc(image_url)}" alt="{esc(title)}" style="max-width:100%"></p>
-          <p>{esc(summary)}</p>
-          <script>location.replace({article_url!r});</script>
-          </body>
+       
+<body style="margin:0;background:#f5f1e5;color:#222;font-family:Arial,sans-serif;line-height:1.7">
+  <main style="max-width:760px;margin:0 auto;padding:20px">
+    <h1 style="font-size:26px">{esc(title)}</h1>
+    <p style="color:#725b16">{esc(category)} · {esc(date)}</p>
+    <img src="{esc(image_url)}" alt="{esc(title)}" style="display:block;width:100%;height:auto;border-radius:10px">
+    <p>{esc(summary)}</p>
+    <p>
+      <a href="{esc(article_url)}" style="display:inline-block;background:#171717;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">
+        Baca Artikel Lengkap →
+      </a>
+    </p>
+    <p style="font-size:13px;color:#666">PUSTAKA TIGA ZAMAN — Jejak Sejarah, Nilai Budaya, Warisan Generasi</p>
+  </main>
+</body>
+
           </html>
           """
 
