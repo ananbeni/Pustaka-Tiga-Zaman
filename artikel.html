@@ -195,14 +195,19 @@
     }
 
     function field(teks, nama) {
-      const pola = new RegExp(
-        "^" + nama + ":\\s*(.*?)\\s*$", "m"
-      );
-      const hasil = teks.match(pola);
-      return hasil
-        ? hasil[1].replace(/^['"]|['"]$/g, "")
-        : "";
-    }
+  const pola = new RegExp(
+    "^" + nama + ":\\s*(.*?)(?=\\n[^ \\t\\n#][^:\\n]*:\\s*|$)",
+    "ms"
+  );
+
+  const hasil = teks.match(pola);
+  if (!hasil) return "";
+
+  return hasil[1]
+    .replace(/\r?\n[ \t]+/g, " ")
+    .trim()
+    .replace(/^(['"])(.*)\1$/, "$2");
+}
 
     function markdown(teks) {
       let html = aman(teks);
