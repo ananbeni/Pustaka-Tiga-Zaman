@@ -1,6 +1,5 @@
 ---
-title: "Latihan Bersama PSHWTM Ranting Wonokromo Cabang Surabaya: Syiar
-  Persaudaraan dan Pelestarian Ajaran"
+title: Latihan Bersama PSHWTM Ranting Wonokromo Cabang Surabaya
 date: 2026-10-25
 category: "Article "
 description: Kegiatan latihan bersama PSHWTM Ranting Wonokromo, Cabang Surabaya,
