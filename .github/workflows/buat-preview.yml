@@ -103,45 +103,49 @@ jobs:
 
               esc = lambda value: html.escape(value, quote=True)
 
-              page = f"""<!DOCTYPE html>
-          <html lang="id">
-          <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>{esc(title)} - PUSTAKA TIGA ZAMAN</title>
-          <meta name="description" content="{esc(summary)}">
-          <meta property="og:type" content="article">
-          <meta property="og:site_name" content="PUSTAKA TIGA ZAMAN">
-          <meta property="og:title" content="{esc(title)}">
-          <meta property="og:description" content="{esc(summary)}">
-          <meta property="og:url" content="{esc(preview_url)}">
-          <meta property="og:image" content="{esc(image_url)}">
-          <meta property="og:image:secure_url" content="{esc(image_url)}">
-          <meta property="og:image:alt" content="{esc(title)}">
-          <meta name="twitter:card" content="summary_large_image">
-          <meta name="twitter:title" content="{esc(title)}">
-          <meta name="twitter:description" content="{esc(summary)}">
-          <meta name="twitter:image" content="{esc(image_url)}">
-          
-          </head>
-       
-<body style="margin:0;background:#f5f1e5;color:#222;font-family:Arial,sans-serif;line-height:1.7">
-  <main style="max-width:760px;margin:0 auto;padding:20px">
-    <h1 style="font-size:26px">{esc(title)}</h1>
-    <p style="color:#725b16">{esc(category)} · {esc(date)}</p>
-    <img src="{esc(image_url)}" alt="{esc(title)}" style="display:block;width:100%;height:auto;border-radius:10px">
-    <p>{esc(summary)}</p>
-    <p>
-      <a href="{esc(article_url)}" style="display:inline-block;background:#171717;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">
-        Baca Artikel Lengkap →
-      </a>
-    </p>
-    <p style="font-size:13px;color:#666">PUSTAKA TIGA ZAMAN — Jejak Sejarah, Nilai Budaya, Warisan Generasi</p>
-  </main>
-</body>
+              
+page = f"""<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(title)} - PUSTAKA TIGA ZAMAN</title>
+<meta name="description" content="{esc(summary)}">
 
-          </html>
-          """
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PUSTAKA TIGA ZAMAN">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(summary)}">
+<meta property="og:url" content="{esc(preview_url)}">
+<meta property="og:image" content="{esc(image_url)}">
+<meta property="og:image:secure_url" content="{esc(image_url)}">
+<meta property="og:image:alt" content="{esc(title)}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(title)}">
+<meta name="twitter:description" content="{esc(summary)}">
+<meta name="twitter:image" content="{esc(image_url)}">
+</head>
+
+<body style="margin:0;background:#f5f1e5;color:#222;font-family:Arial,sans-serif;line-height:1.7">
+<main style="max-width:760px;margin:0 auto;padding:20px">
+<h1>{esc(title)}</h1>
+<p>{esc(category)} · {esc(date)}</p>
+<img src="{esc(image_url)}" alt="{esc(title)}" style="display:block;width:100%;height:auto;border-radius:10px">
+<p>{esc(summary)}</p>
+<p>Artikel sedang dibuka. Jika tidak beralih otomatis, tekan tautan berikut:</p>
+<p><a href="{esc(article_url)}">Buka artikel lengkap →</a></p>
+</main>
+
+<script>
+setTimeout(function() {{
+  window.location.replace("{esc(article_url)}");
+}}, 1000);
+</script>
+</body>
+</html>
+"""
+
 
               (folder / "index.html").write_text(
                   page, encoding="utf-8"
