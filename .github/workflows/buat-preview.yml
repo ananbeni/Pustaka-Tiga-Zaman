@@ -122,13 +122,13 @@ jobs:
           <meta name="twitter:title" content="{esc(title)}">
           <meta name="twitter:description" content="{esc(summary)}">
           <meta name="twitter:image" content="{esc(image_url)}">
-          <meta http-equiv="refresh" content="0;url={esc(article_url)}">
+          
           </head>
           <body>
           <p>Membuka artikel: <a href="{esc(article_url)}">{esc(title)}</a></p>
           <p><img src="{esc(image_url)}" alt="{esc(title)}" style="max-width:100%"></p>
           <p>{esc(summary)}</p>
-          <script>location.replace({article_url!r});</script>
+          
           </body>
           </html>
           """
