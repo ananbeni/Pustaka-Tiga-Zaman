@@ -132,8 +132,13 @@ jobs:
 <p>{esc(category)} · {esc(date)}</p>
 <img src="{esc(image_url)}" alt="{esc(title)}" style="display:block;width:100%;height:auto;border-radius:10px">
 <p>{esc(summary)}</p>
-<p>Artikel sedang dibuka. Jika tidak beralih otomatis, tekan tautan berikut:</p>
-<p><a href="{esc(article_url)}">Buka artikel lengkap →</a></p>
+<script>
+window.addEventListener("load", function() {{
+  setTimeout(function() {{
+    window.location.href = "{esc(article_url)}";
+  }}, 1000);
+}});
+</script>
 </main>
 
 <script>
