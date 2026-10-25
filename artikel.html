@@ -92,15 +92,31 @@
       overflow-wrap: anywhere;
     }
 
-    .isi-artikel img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
+    
+.isi-artikel img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
-    .isi-artikel a {
-      color: #765700;
-    }
+/* FOTO TENGAH BERITA */
+.isi-artikel .foto-tengah {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.isi-artikel .foto-tengah img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  margin: auto;
+}
+
+.isi-artikel a {
+  color: #765700;
+}
+
 
     #pesan {
       padding: 18px;
@@ -251,13 +267,42 @@
         const kategori = field(data, "category");
         const ringkasan = field(data, "description");
         const gambar = field(data, "image");
+const gambarTengah = field(data, "image_tengah");
 
         document.title = judul + " | PUSTAKA TIGA ZAMAN";
         document.getElementById("judul").textContent = judul;
         document.getElementById("kategori").textContent = kategori;
         document.getElementById("tanggal").textContent = tanggal;
         document.getElementById("ringkasan").textContent = ringkasan;
-        document.getElementById("isi").innerHTML = markdown(isi);
+        
+let isiHtml = markdown(isi);
+
+if (
+  gambarTengah &&
+  (/^\/media\//.test(gambarTengah) ||
+   /^https?:\/\//i.test(gambarTengah))
+) {
+  const fotoTengahHtml =
+    '<figure class="foto-tengah">' +
+    '<img src="' + aman(gambarTengah) +
+    '" alt="' + aman(judul) +
+    '" loading="lazy">' +
+    '</figure>';
+
+  const posisi = isiHtml.indexOf("</p>");
+
+  if (posisi !== -1) {
+    isiHtml =
+      isiHtml.slice(0, posisi + 4) +
+      fotoTengahHtml +
+      isiHtml.slice(posisi + 4);
+  } else {
+    isiHtml += fotoTengahHtml;
+  }
+}
+
+document.getElementById("isi").innerHTML = isiHtml;
+
 
         const foto = document.getElementById("foto");
         if (gambar) {
