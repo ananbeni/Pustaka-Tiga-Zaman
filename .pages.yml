@@ -46,6 +46,18 @@ content:
             - png
             - webp
 
+
+      - name: image_tengah
+        label: Foto tengah berita (opsional)
+        type: image
+        options:
+          extensions:
+            - jpg
+            - jpeg
+            - png
+            - webp
+
+
       - name: body
         label: Isi berita
         type: rich-text
