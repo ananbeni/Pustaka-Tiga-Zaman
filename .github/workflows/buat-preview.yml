@@ -101,10 +101,9 @@ jobs:
                   BASE + "/artikel.html?berita=" + quote(file.name, safe="")
               )
 
-              esc = lambda value: html.escape(value, quote=True)
+                            esc = lambda value: html.escape(value, quote=True)
 
-              
-page = f"""<!DOCTYPE html>
+              page = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -147,7 +146,7 @@ setTimeout(function() {{
 """
 
 
-              (folder / "index.html").write_text(
+                            (folder / "index.html").write_text(
                   page, encoding="utf-8"
               )
               jumlah += 1
