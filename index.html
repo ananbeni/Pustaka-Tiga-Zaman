@@ -21,12 +21,29 @@
 @media(max-width:900px){#daftar-berita{grid-template-columns:repeat(2,minmax(0,1fr))}.docs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.wrap{width:calc(100% - 22px)}.masthead-inner{padding:17px 0;gap:10px}.brand-mark{flex-basis:45px;height:45px;font-size:.85rem}.brand p{font-size:.62rem;letter-spacing:.04em}.nav a{padding:8px 9px;font-size:.82rem}.hero{padding-top:18px}.hero-panel{border-radius:10px}.section-head{align-items:start;flex-direction:column}#daftar-berita{grid-template-columns:1fr;gap:13px}.foto-berita{height:220px}.docs-grid{gap:9px}.doc-card{min-height:0;padding:14px}.about{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+.brand-mark {
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  border: 2px solid #e5b923;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 </style>
 </head>
 <body>
 <div class="topline"></div>
 <header class="masthead"><div class="wrap masthead-inner">
-  <div class="brand-mark" aria-hidden="true">PTZ</div>
+  <div class="brand-mark">
+  <img src="/favicon.png" alt="Logo PUSTAKA TIGA ZAMAN">
+</div>
   <div class="brand"><h1>PUSTAKA TIGA ZAMAN</h1><p>JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI</p></div>
 </div></header>
 <nav class="nav" aria-label="Navigasi utama"><div class="wrap nav-inner">
