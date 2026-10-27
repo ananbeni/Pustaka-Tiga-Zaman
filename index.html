@@ -1,981 +1,119 @@
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111111">
-
-  <meta name="description"
-    content="Pustaka Tiga Zaman PSHWTM: edukasi sejarah, nilai budaya, dan warisan generasi.">
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171717">
+<title>PUSTAKA TIGA ZAMAN | Jejak Sejarah, Nilai Budaya, Warisan Generasi</title>
+<meta name="description" content="PUSTAKA TIGA ZAMAN adalah ruang dokumentasi sejarah, nilai budaya, tokoh, persaudaraan, dan warisan generasi.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://pustakatigazaman.my.id/">
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta property="og:locale" content="id_ID">
 <meta property="og:site_name" content="PUSTAKA TIGA ZAMAN">
-<meta property="og:type" content="article">
-
-
-  <title>PUSTAKA TIGA ZAMAN | PSHWTM</title>
-
-  <!-- IKON WEBSITE -->
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-
-  <style>
-
-    :root {
-      --black: #111111;
-      --dark: #1d1d1d;
-      --yellow: #f2c230;
-      --white: #fffdf5;
-      --gray: #bdbdbd;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    /* HEADER */
-    header {
-      background: var(--black);
-      border-bottom: 2px solid var(--yellow);
-    }
-
-    .navbar {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-      padding: 12px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    
-.logo {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
-    .brand h1 {
-      color: var(--yellow);
-      font-size: 17px;
-      line-height: 1.3;
-    }
-
-    .brand small {
-      color: var(--gray);
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-
-    nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      font-size: 13px;
-    }
-
-    nav a:hover {
-      color: var(--yellow);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 65px 0;
-      background: linear-gradient(135deg, #111111, #29210b);
-    }
-
-    .label {
-      color: var(--yellow);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .hero h2 {
-      font-size: clamp(32px, 6vw, 52px);
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
-
-    .hero h2 span {
-      color: var(--yellow);
-    }
-
-    .hero p {
-      max-width: 620px;
-      color: #dddddd;
-      font-size: 15px;
-      margin-bottom: 24px;
-    }
-
-    .button {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--black);
-      padding: 11px 20px;
-      border-radius: 4px;
-      font-weight: bold;
-      font-size: 13px;
-    }
-
-    .button:hover {
-      background: var(--white);
-    }
-
-    /* MOTTO */
-    .motto {
-      padding: 18px 0;
-      text-align: center;
-      background: var(--yellow);
-      color: var(--black);
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    /* SECTION */
-    section {
-      padding: 48px 0;
-      scroll-margin-top: 15px;
-    }
-
-    .section-title {
-      margin-bottom: 22px;
-    }
-
-    .section-title small {
-      color: var(--yellow);
-      font-size: 11px;
-      letter-spacing: 2px;
-    }
-
-    .section-title h2 {
-      font-size: 28px;
-      margin-top: 5px;
-    }
-
-    .section-title p {
-      color: var(--gray);
-      font-size: 14px;
-      margin-top: 5px;
-    }
-
-    /* TENTANG */
-    .about p {
-      color: #dddddd;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
-
-    /* KATEGORI */
-    .categories {
-      background: #191919;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .category {
-      background: var(--dark);
-      border: 1px solid #40391f;
-      border-radius: 7px;
-      padding: 20px;
-      transition: 0.2s;
-    }
-
-    .category:hover {
-      border-color: var(--yellow);
-      transform: translateY(-2px);
-    }
-
-    .category .number {
-      color: var(--yellow);
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .category h3 {
-      margin: 7px 0;
-      font-size: 17px;
-    }
-
-    .category p {
-      color: var(--gray);
-      font-size: 13px;
-    }
-
-    /* ARTIKEL */
-    .search {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .search input {
-      flex: 1;
-      width: 100%;
-      min-width: 0;
-      background: #202020;
-      color: white;
-      border: 1px solid #555044;
-      border-radius: 4px;
-      padding: 12px;
-      font-size: 14px;
-    }
-
-    .search button {
-      background: var(--yellow);
-      color: var(--black);
-      border: none;
-      border-radius: 4px;
-      padding: 0 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .articles {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .article {
-      background: var(--dark);
-      padding: 20px;
-      border-radius: 6px;
-      border: 1px solid #353535;
-    }
-
-    .article .tag {
-      color: var(--yellow);
-      font-size: 10px;
-      letter-spacing: 1px;
-      font-weight: bold;
-    }
-
-    .article h3 {
-      font-size: 17px;
-      margin: 8px 0;
-    }
-
-    .article p {
-      font-size: 13px;
-      color: var(--gray);
-      margin-bottom: 15px;
-    }
-
-    .read {
-      display: inline-block;
-      color: var(--yellow);
-      font-weight: bold;
-      font-size: 12px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .no-result {
-      display: none;
-      color: var(--gray);
-      padding: 15px 0;
-    }
-
-    /* DETAIL ARTIKEL */
-    .detail {
-      display: none;
-      margin-top: 22px;
-      padding: 22px;
-      background: #202020;
-      border-left: 4px solid var(--yellow);
-      border-radius: 4px;
-    }
-
-    .detail h3 {
-      color: var(--yellow);
-      margin-bottom: 10px;
-    }
-
-    .detail p {
-      color: #dddddd;
-      font-size: 14px;
-      margin-bottom: 12px;
-      white-space: pre-line;
-    }
-
-    .close-detail {
-      border: 1px solid var(--yellow);
-      background: transparent;
-      color: var(--yellow);
-      padding: 7px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    /* NILAI */
-    .values {
-      background: var(--yellow);
-      color: var(--black);
-    }
-
-    .values .section-title small {
-      color: #594400;
-    }
-
-    .values .section-title p {
-      color: #403515;
-    }
-
-    .value-list {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .value {
-      border-top: 2px solid var(--black);
-      padding-top: 12px;
-    }
-
-    .value h3 {
-      margin-bottom: 5px;
-    }
-
-    .value p {
-      font-size: 13px;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 30px 0 20px;
-      text-align: center;
-      background: #090909;
-    }
-
-    footer h3 {
-      color: var(--yellow);
-      font-size: 17px;
-    }
-
-    footer p {
-      color: var(--gray);
-      font-size: 12px;
-      margin-top: 5px;
-    }
-
-    .copyright {
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px solid #333;
-      color: #888;
-      font-size: 11px;
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      nav {
-        gap: 10px 15px;
-      }
-
-      .hero {
-        padding: 48px 0;
-      }
-
-      .grid,
-      .articles,
-      .value-list {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title h2 {
-        font-size: 24px;
-      }
-    }
-
-    /* UKURAN LOGO INSTAGRAM DAN TIKTOK */
-    .sosial-media a {
-      display: inline-flex;
-      width: 42px;
-      height: 42px;
-      margin: 0 6px;
-      align-items: center;
-      justify-content: center;
-      background: #ffd700;
-      border-radius: 50%;
-    }
-
-    .sosial-media img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      display: block;
-    }
-
-  </style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="PUSTAKA TIGA ZAMAN">
+<meta property="og:description" content="Jejak Sejarah, Nilai Budaya, Warisan Generasi.">
+<meta property="og:url" content="https://pustakatigazaman.my.id/">
+<style>
+:root{--gold:#e5b923;--gold-dark:#806000;--ink:#171717;--paper:#f5f3ec;--white:#fffdf7;--muted:#68645a;--line:#e7e0cd;--max:1160px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#25241f;background:var(--paper);font-family:Arial,Helvetica,sans-serif;line-height:1.65}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 32px));margin:auto}.topline{height:5px;background:var(--gold)}.masthead{background:var(--ink);color:white;border-bottom:1px solid #343434}.masthead-inner{display:flex;align-items:center;gap:15px;padding:22px 0}.brand-mark{display:grid;place-items:center;flex:0 0 54px;height:54px;border:2px solid var(--gold);border-radius:50%;color:var(--gold);font-weight:900;font-size:1rem}.brand h1{margin:0;font-size:clamp(1.3rem,4vw,2.1rem);line-height:1.15;letter-spacing:.035em}.brand p{margin:7px 0 0;color:#e5dfcd;font-size:.75rem;letter-spacing:.1em}.nav{background:#222;color:#f8f5eb}.nav-inner{display:flex;flex-wrap:wrap;gap:4px;padding:8px 0}.nav a{text-decoration:none;padding:8px 12px;border-radius:5px;font-size:.9rem}.nav a:hover,.nav a:focus-visible{background:var(--gold);color:var(--ink)}.hero{padding:32px 0 24px}.hero-panel{background:var(--ink);color:white;border-radius:14px;padding:clamp(24px,5vw,50px);border-left:7px solid var(--gold)}.eyebrow,.section-kicker{color:var(--gold-dark);font-size:.76rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.hero .eyebrow{color:var(--gold)}.hero h2{max-width:760px;margin:10px 0 12px;font-size:clamp(1.8rem,5vw,3.3rem);line-height:1.12}.hero p{max-width:680px;color:#e4e0d5;margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:6px;font-weight:800;text-decoration:none;border:1px solid var(--gold)}.btn-primary{background:var(--gold);color:var(--ink)}.btn-secondary{color:white}.section{padding:20px 0 32px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:17px}.section-head h2{margin:0;color:var(--ink);font-size:clamp(1.4rem,3vw,2rem);line-height:1.2}.section-head p{margin:5px 0 0;color:var(--muted);font-size:.94rem}.tools{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.searchbox{flex:1 1 240px}.searchbox input{width:100%;min-height:46px;border:1px solid #d9d2c0;border-radius:8px;padding:10px 14px;font:inherit;background:var(--white)}.searchbox input:focus{outline:3px solid #e5b92355;border-color:var(--gold-dark)}.filters{display:flex;flex-wrap:wrap;gap:7px}.filter{border:1px solid #d8d0bb;background:var(--white);color:#353127;border-radius:999px;padding:8px 12px;cursor:pointer;font:inherit;font-size:.87rem;font-weight:700}.filter[aria-pressed=true],.filter:hover{background:var(--ink);color:var(--gold);border-color:var(--ink)}#daftar-berita{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.kartu-berita{min-width:0;overflow:hidden;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 16px #17171708;transition:transform .18s,box-shadow .18s}.kartu-berita:hover{transform:translateY(-3px);box-shadow:0 9px 25px #17171712}.foto-berita{display:block;width:100%;height:205px;object-fit:cover;background:#e8e4d9}.isi-kartu-berita{display:flex;flex:1;flex-direction:column;padding:18px}.meta-berita{color:var(--gold-dark);font-size:.78rem;font-weight:800;letter-spacing:.035em}.kartu-berita h2,.kartu-berita h3{margin:8px 0;font-size:1.15rem;line-height:1.35;color:var(--ink)}.kartu-berita p{margin:0 0 14px;color:#5c594f;font-size:.93rem}.kartu-berita a{color:inherit;text-decoration:none}.kartu-berita a:hover{text-decoration:underline;text-decoration-color:var(--gold-dark)}.kartu-berita .tautan-berita,.kartu-berita .baca-selengkapnya{margin-top:auto;color:#6c5100;font-weight:800}.empty-state{grid-column:1/-1;padding:24px;border:1px dashed #c9bea0;border-radius:10px;color:var(--muted);background:var(--white)}.docs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.doc-card{display:block;min-height:150px;padding:19px;text-decoration:none;background:var(--white);border:1px solid var(--line);border-radius:12px;transition:border-color .18s,transform .18s}.doc-card:hover{border-color:var(--gold-dark);transform:translateY(-2px)}.doc-icon{display:inline-grid;place-items:center;width:36px;height:36px;margin-bottom:11px;border-radius:9px;background:#f5e9b7;color:#5d4600;font-weight:900}.doc-card h3{margin:0 0 6px;font-size:1.02rem;color:var(--ink)}.doc-card p{margin:0;color:var(--muted);font-size:.87rem}.about{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}.about-copy,.about-note{border-radius:12px;padding:24px}.about-copy{background:var(--white);border:1px solid var(--line)}.about-copy h2{margin:0 0 10px}.about-copy p{margin:0;color:#555146}.about-note{background:#eee3b9;border-left:5px solid var(--gold)}.about-note strong{display:block;margin-bottom:7px;color:var(--ink)}footer{margin-top:20px;padding:26px 0;background:var(--ink);color:#ddd7c6}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}footer strong{color:var(--gold)}footer p{margin:4px 0;font-size:.88rem}
+@media(max-width:900px){#daftar-berita{grid-template-columns:repeat(2,minmax(0,1fr))}.docs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.wrap{width:calc(100% - 22px)}.masthead-inner{padding:17px 0;gap:10px}.brand-mark{flex-basis:45px;height:45px;font-size:.85rem}.brand p{font-size:.62rem;letter-spacing:.04em}.nav a{padding:8px 9px;font-size:.82rem}.hero{padding-top:18px}.hero-panel{border-radius:10px}.section-head{align-items:start;flex-direction:column}#daftar-berita{grid-template-columns:1fr;gap:13px}.foto-berita{height:220px}.docs-grid{gap:9px}.doc-card{min-height:0;padding:14px}.about{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+</style>
 </head>
-
 <body>
-  
-  <header>
-    <div class="container navbar">
-
-      <a class="brand" href="#beranda">
-        
-<div class="logo">
-  <img src="/favicon.png" alt="Logo PUSTAKA TIGA ZAMAN">
-</div>
-
-
-        <div>
-          <h1>PUSTAKA TIGA ZAMAN</h1>
-          <small>PSHWTM • LITERASI BUDAYA</small>
-        </div>
-      </a>
-
-      <nav aria-label="Navigasi utama">
-        <a href="#beranda">Beranda</a>
-        <a href="#tentang">Tentang</a>
-        <a href="#kategori">Kategori</a>
-        <a href="#artikel">Artikel</a>
-      </nav>
-
+<div class="topline"></div>
+<header class="masthead"><div class="wrap masthead-inner">
+  <div class="brand-mark" aria-hidden="true">PTZ</div>
+  <div class="brand"><h1>PUSTAKA TIGA ZAMAN</h1><p>JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI</p></div>
+</div></header>
+<nav class="nav" aria-label="Navigasi utama"><div class="wrap nav-inner">
+  <a href="/">Beranda</a><a href="#berita">Berita Terbaru</a><a href="#dokumentasi">Dokumentasi</a><a href="#tentang">Tentang Kami</a>
+</div></nav>
+<main>
+<section class="hero"><div class="wrap"><div class="hero-panel">
+  <div class="eyebrow">Arsip • Sejarah • Edukasi</div>
+  <h2>Merawat Jejak, Menjaga Ingatan, Mewariskan Nilai.</h2>
+  <p>Ruang dokumentasi sejarah dan budaya untuk mengenal perjalanan, tokoh, nilai luhur, serta warisan yang patut dipelajari generasi berikutnya.</p>
+  <div class="hero-actions"><a class="btn btn-primary" href="#berita">Baca Berita Terbaru</a><a class="btn btn-secondary" href="#dokumentasi">Jelajahi Dokumentasi</a></div>
+</div></div></section>
+<section class="section" id="berita"><div class="wrap">
+  <div class="section-head"><div><div class="section-kicker">Kabar dan catatan</div><h2>Berita Terbaru</h2><p>Artikel dimuat otomatis dari berkas Markdown di repositori PUSTAKA TIGA ZAMAN.</p></div></div>
+  <div class="tools"><label class="searchbox"><input id="cari-berita" type="search" placeholder="Cari judul, topik, atau kata kunci..." aria-label="Cari berita"></label>
+    <div class="filters" role="group" aria-label="Filter kategori berita">
+      <button class="filter" type="button" data-filter="semua" aria-pressed="true">Semua</button><button class="filter" type="button" data-filter="sejarah" aria-pressed="false">Sejarah</button><button class="filter" type="button" data-filter="budaya" aria-pressed="false">Nilai Budaya</button><button class="filter" type="button" data-filter="persaudaraan" aria-pressed="false">Persaudaraan</button><button class="filter" type="button" data-filter="literasi" aria-pressed="false">Literasi</button>
     </div>
-  </header>
-
-  <main>
-
-    <!-- HALAMAN UTAMA -->
-    <section class="hero" id="beranda">
-      <div class="container">
-
-        <div class="label">PUSAT EDUKASI PSHWTM</div>
-
-        <h2>
-          Mengenal Sejarah,<br>
-          <span>Merawat Warisan.</span>
-        </h2>
-
-        <p>
-          Ruang belajar untuk mengenal perjalanan sejarah PSHWTM,
-          memahami nilai budaya, serta mewariskan pengetahuan
-          kepada generasi mendatang.
-        </p>
-
-        <a href="#artikel" class="button">MULAI BELAJAR →</a>
-
-      </div>
-    </section>
-
-    <div class="motto">
-      JEJAK SEJARAH • NILAI BUDAYA • WARISAN GENERASI
-    </div>
-
-    <!-- TENTANG -->
-    <section id="tentang">
-      <div class="container about">
-
-        <div class="section-title">
-          <small>TENTANG KAMI</small>
-          <h2>Belajar dan Mengenal</h2>
-        </div>
-
-        <p>
-          PUSTAKA TIGA ZAMAN adalah ruang literasi dan edukasi
-          yang berfokus pada dokumentasi sejarah, nilai budaya,
-          dan warisan generasi dalam konteks PSHWTM serta
-          kebudayaan Nusantara.
-        </p>
-
-        <p>
-          Kami mendorong pembelajaran yang menghargai sumber,
-          membedakan fakta dari interpretasi, serta menjaga
-          persaudaraan dan kearifan budaya.
-        </p>
-
-      </div>
-    </section>
-
-    <!-- KATEGORI -->
-    <section class="categories" id="kategori">
-      <div class="container">
-
-        <div class="section-title">
-          <small>RUANG BELAJAR</small>
-          <h2>Kategori Edukasi</h2>
-          <p>Pilih bidang yang ingin kamu pelajari.</p>
-        </div>
-
-        <div class="grid">
-
-          <a href="#artikel" class="category"
-             data-filter-category="sejarah">
-            <div class="number">01 / SEJARAH</div>
-            <h3>Jejak Sejarah</h3>
-            <p>Perjalanan PSHWTM, tokoh, peristiwa, dan arsip.</p>
-          </a>
-
-          <a href="#artikel" class="category"
-             data-filter-category="budaya">
-            <div class="number">02 / BUDAYA</div>
-            <h3>Nilai Budaya</h3>
-            <p>Falsafah hidup dan kearifan budaya Nusantara.</p>
-          </a>
-
-          <a href="#artikel" class="category"
-             data-filter-category="persaudaraan">
-            <div class="number">03 / PERSAUDARAAN</div>
-            <h3>Etika Persaudaraan</h3>
-            <p>Keteladanan, tanggung jawab, dan sikap menghormati.</p>
-          </a>
-
-          <a href="#artikel" class="category"
-             data-filter-category="literasi">
-            <div class="number">04 / LITERASI</div>
-            <h3>Pustaka Digital</h3>
-            <p>Dokumen, referensi, dan panduan penelitian.</p>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ARTIKEL -->
-    <section id="artikel">
-      <div class="container">
-
-        <div class="section-title">
-          <small>BACA DAN PELAJARI</small>
-          <h2>Materi Edukasi</h2>
-          <p>Pilih artikel atau cari topik yang kamu butuhkan.</p>
-        </div>
-
-        <form class="search" id="searchForm">
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Cari materi edukasi..."
-            aria-label="Cari artikel"
-          >
-          <button type="submit">CARI</button>
-        </form>
-
-        <div class="articles" id="articleList">
-
-          <article class="article" data-category="sejarah">
-            <div class="tag">JEJAK SEJARAH</div>
-            <h3>Mengenal Sejarah PSHWTM</h3>
-            <p>
-              Memahami pentingnya kronologi, sumber sejarah,
-              dokumentasi, dan penelitian.
-            </p>
-            <button class="read" data-article="sejarah">
-              BACA MATERI →
-            </button>
-          </article>
-
-          <article class="article" data-category="budaya">
-            <div class="tag">NILAI BUDAYA</div>
-            <h3>Memahami Kearifan Budaya</h3>
-            <p>
-              Mengenal nilai luhur yang hidup dalam tradisi
-              dan kehidupan masyarakat.
-            </p>
-            <button class="read" data-article="budaya">
-              BACA MATERI →
-            </button>
-          </article>
-
-        <body>
-          <section id="berita">
-  <h2>Berita Terbaru</h2>
-  <div id="daftar-berita">
-    Memuat berita...
   </div>
-</section>
-
-<script src="berita.js"></script>
-</body>
-
-
-<article class="article" data-category="budaya">
-  <div class="tag">NILAI BUDAYA</div>
-
-  
-<img
-  src="IMG-20261014-WA0006.jpg"
-  alt="Delegasi PSHWTM Madiun di Belanda"
-  style="display:block; width:100%; max-width:280px; height:160px; object-fit:contain; border-radius:10px; margin:12px auto;"
-  loading="lazy"
->
-
-
-  <h3>DELEGASI PSHWTM PUKAU PUBLIK BELANDA DI AMERSFOORT</h3>
-
-  <p><strong>🌍 DARI MADIUN UNTUK DUNIA!</strong></p>
-
-  <details>
-    <summary class="read">BACA MATERI →</summary>
-
-    <div class="article-content">
-      <h3>🇮🇩 PSHWTM MADIUN DI PANGGUNG INTERNASIONAL BELANDA</h3>
-
-      <p>
-        Persaudaraan Setia Hati Winongo Tunas Muda (PSHWTM)
-        Madiun hadir dalam 1st International Pencak Silat
-        Culture &amp; Heritage Festival di Amersfoort, Belanda,
-        pada 10–11 Oktober 2026.
-      </p>
-
-      <p>
-        Melalui repertoar “The Spirit of Mataraman: Pencak
-        Silat from Madiun”, enam pesilat dan seniman dari
-        Sanggar Satria Krida Manggala dan Sanggar Seni Budaya
-        Sugeng Santoso memperkenalkan kekayaan pencak silat
-        Mataraman kepada masyarakat internasional.
-      </p>
-
-      <p>
-        Tak hanya melalui seni gerak dan permainan senjata
-        tradisional, delegasi juga membawa literasi sejarah
-        melalui buku Jejak Sang Pendekar dan Pusaka Pencak
-        Silat Dalam Tiga Zaman, yang diberitakan diserahkan
-        kepada Menteri Kebudayaan RI, Fadli Zon.
-      </p>
-
-      <p>
-        Bagi PSHWTM, pencak silat bukan sekadar bela diri.
-        Ia adalah warisan budaya, pembentukan karakter,
-        dan nilai persaudaraan yang harus dijaga serta
-        diwariskan kepada generasi penerus.
-      </p>
-
-      <p>
-        <strong>
-          Menjaga sejarah. Melestarikan budaya.
-          Menjunjung martabat. Merawat persaudaraan.
-        </strong>
-      </p>
-
-      <p>Dari Madiun, untuk Indonesia, menuju dunia. 🇮🇩</p>
-
-      <p>
-        #PSHWTM #PSHWTMMadiun #TheSpiritOfMataraman
-        #PencakSilatIndonesia #KampungPesilat
-        #DiplomasiBudaya #WarisanBudaya
-      </p>
-    </div>
-  </details>
-</article>
-
-          
-
-          <article class="article" data-category="persaudaraan">
-            <div class="tag">PERSAUDARAAN</div>
-            <h3>Persaudaraan dan Keteladanan</h3>
-            <p>
-              Membangun sikap saling menghormati dan
-              bertanggung jawab di tengah masyarakat.
-            </p>
-            <button class="read" data-article="persaudaraan">
-              BACA MATERI →
-            </button>
-          </article>
-
-          <article class="article" data-category="literasi">
-            <div class="tag">LITERASI</div>
-            <h3>Cara Meneliti Sumber Sejarah</h3>
-            <p>
-              Langkah awal memeriksa dokumen, asal sumber,
-              konteks, dan keterangan pendukung.
-            </p>
-            <button class="read" data-article="literasi">
-              BACA MATERI →
-            </button>
-          </article>
-
-        </div>
-
-        <p class="no-result" id="noResult">
-          Materi tidak ditemukan. Silakan coba kata kunci lain.
-        </p>
-
-        <!-- Artikel dibuka di bagian ini -->
-        <div class="detail" id="articleDetail"
-             aria-live="polite">
-          <h3 id="detailTitle"></h3>
-          <p id="detailText"></p>
-          <button class="close-detail" id="closeDetail">
-            Tutup Materi
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- NILAI -->
-    <section class="values">
-      <div class="container">
-
-        <div class="section-title">
-          <small>SEMANGAT PUSTAKA</small>
-          <h2>Belajar dari Tiga Zaman</h2>
-          <p>
-            Masa lalu sebagai pelajaran, masa kini sebagai
-            pengabdian, dan masa depan sebagai warisan.
-          </p>
-        </div>
-
-        <div class="value-list">
-          <div class="value">
-            <h3>Sejarah</h3>
-            <p>Menjaga ingatan dan memahami perjalanan.</p>
-          </div>
-
-          <div class="value">
-            <h3>Budaya</h3>
-            <p>Merawat nilai luhur dan menghargai perbedaan.</p>
-          </div>
-
-          <div class="value">
-            <h3>Generasi</h3>
-            <p>Mewariskan pengetahuan secara bertanggung jawab.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
- 
-<footer>
-  <div class="container">
-    <h3>PUSTAKA TIGA ZAMAN</h3>
-    <p>PSHWTM • Jejak Sejarah • Nilai Budaya • Warisan Generasi</p>
-
-    <!-- MEDIA SOSIAL -->
-  
-<div class="sosial-media">
-  <p>Ikuti Media Sosial Kami</p>
-
-  <a href="https://www.instagram.com/pustakatigazaman/"
-     target="_blank"
-     rel="noopener noreferrer"
-     aria-label="Instagram Pustaka Tiga Zaman">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-         alt="Instagram">
-  </a>
-
-  <a href="https://www.tiktok.com/@pustakatigazaman"
-     target="_blank"
-     rel="noopener noreferrer"
-     aria-label="TikTok Pustaka Tiga Zaman">
-    
-<svg viewBox="0 0 24 24"
-     width="22" height="22"
-     xmlns="http://www.w3.org/2000/svg"
-     aria-label="TikTok">
-  <path fill="#111111"
-        d="M19.6 6.2a5.1 5.1 0 0 1-3.1-1V15a5.5 5.5 0 1 1-4.8-5.4v3a2.5 2.5 0 1 0 1.8 2.4V2h3a5.1 5.1 0 0 0 3.1 4.2v0z"/>
-</svg>
-
-  </a>
-</div>
-
-
-    <p class="copyright">
-      © <span id="year"></span> Pustaka Tiga Zaman.
-      Media edukasi dan literasi.
-    </p>
+  <div id="daftar-berita" aria-live="polite"><div class="empty-state">Memuat berita terbaru...</div></div><p id="status-berita" class="section-kicker" aria-live="polite"></p>
+</div></section>
+<section class="section" id="dokumentasi"><div class="wrap">
+  <div class="section-head"><div><div class="section-kicker">Jelajahi arsip</div><h2>Kategori Dokumentasi</h2><p>Ruang penelusuran tema sejarah, budaya, dan literasi.</p></div></div>
+  <div class="docs-grid">
+    <a class="doc-card" href="#berita" data-doc-filter="sejarah"><span class="doc-icon">01</span><h3>Jejak Sejarah</h3><p>Peristiwa, perjalanan, arsip, dan catatan sejarah.</p></a>
+    <a class="doc-card" href="#berita" data-doc-filter="persaudaraan"><span class="doc-icon">02</span><h3>Silsilah &amp; Tokoh</h3><p>Mengenal tokoh dan perjalanan persaudaraan.</p></a>
+    <a class="doc-card" href="#berita" data-doc-filter="budaya"><span class="doc-icon">03</span><h3>Falsafah &amp; Nilai Budaya</h3><p>Nilai luhur, ajaran, dan kearifan budaya.</p></a>
+    <a class="doc-card" href="#berita" data-doc-filter="literasi"><span class="doc-icon">04</span><h3>Warisan &amp; Literasi</h3><p>Dokumen, karya, dan pengetahuan untuk generasi.</p></a>
   </div>
-</footer>
+</div></section>
+<section class="section" id="tentang"><div class="wrap about">
+  <div class="about-copy"><div class="section-kicker">Tentang platform</div><h2>PUSTAKA TIGA ZAMAN</h2><p>PUSTAKA TIGA ZAMAN hadir sebagai ruang dokumentasi dan edukasi sejarah. Informasi disajikan untuk membantu pembaca mengenal jejak masa lalu, memahami nilai budaya, serta menjaga warisan pengetahuan agar tetap dapat dipelajari.</p></div>
+  <div class="about-note"><strong>JEJAK SEJARAH, NILAI BUDAYA, WARISAN GENERASI</strong>Menyimpan catatan dengan cermat, menyampaikan informasi dengan bertanggung jawab, dan menghargai sumber sejarah.</div>
+</div></section>
+</main>
+<footer><div class="wrap footer-inner"><div><strong>PUSTAKA TIGA ZAMAN</strong><p>Jejak Sejarah • Nilai Budaya • Warisan Generasi</p></div><p>© <span id="tahun"></span> PUSTAKA TIGA ZAMAN</p></div></footer>
+<script src="/berita.js"></script>
+<script>
+(() => {
+  const daftar = document.getElementById("daftar-berita");
+  const pencarian = document.getElementById("cari-berita");
+  const tombol = [...document.querySelectorAll("[data-filter]")];
+  const status = document.getElementById("status-berita");
+  let aktif = "semua";
+  document.getElementById("tahun").textContent = new Date().getFullYear();
 
-
-  <script>
-    // Tahun otomatis
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-    const searchForm = document.getElementById("searchForm");
-    const searchInput = document.getElementById("searchInput");
-    const articles = [
-      ...document.querySelectorAll(".article")
-    ];
-    const noResult = document.getElementById("noResult");
-
-    const detail = document.getElementById("articleDetail");
-    const detailTitle = document.getElementById("detailTitle");
-    const detailText = document.getElementById("detailText");
-
-    let activeCategory = "";
-
-    // Materi edukasi dasar
-    const materials = {
-      sejarah: {
-        title: "Mengenal Sejarah PSHWTM",
-        text:
-          "Sejarah perlu dipelajari melalui penelusuran sumber " +
-          "dan dokumentasi yang dapat dipertanggungjawabkan.\n\n" +
-          "Dalam mempelajari sejarah PSHWTM, perhatikan kronologi, " +
-          "tokoh, dokumen, foto, kesaksian, dan konteks zamannya.\n\n" +
-          "Pisahkan fakta yang didukung bukti dari cerita lisan " +
-          "atau penafsiran yang masih membutuhkan verifikasi."
-      },
-
-      budaya: {
-        title: "Memahami Kearifan Budaya",
-        text:
-          "Budaya mencakup nilai, tradisi, pengetahuan, dan " +
-          "kebiasaan yang berkembang dalam masyarakat.\n\n" +
-          "Mempelajari budaya memerlukan sikap terbuka, " +
-          "penghormatan terhadap konteks, serta kesediaan " +
-          "memahami perbedaan antardaerah dan antargenerasi."
-      },
-
-      persaudaraan: {
-        title: "Persaudaraan dan Keteladanan",
-        text:
-          "Persaudaraan dapat diwujudkan melalui kepedulian, " +
-          "kejujuran, sikap saling menghormati, dan tanggung jawab.\n\n" +
-          "Keteladanan terlihat dalam tindakan sehari-hari: " +
-          "menjaga ucapan, menghargai perbedaan, menghindari " +
-          "provokasi, dan ikut menciptakan lingkungan yang damai."
-      },
-
-      literasi: {
-        title: "Cara Meneliti Sumber Sejarah",
-        text:
-          "1. Catat judul, tanggal, penulis, dan asal dokumen.\n\n" +
-          "2. Periksa apakah sumber merupakan dokumen asli, " +
-          "salinan, tulisan ulang, atau kesaksian.\n\n" +
-          "3. Bandingkan informasi dengan sumber lain yang " +
-          "independen.\n\n" +
-          "4. Catat perbedaan keterangan dan jangan mengubah " +
-          "dugaan menjadi fakta.\n\n" +
-          "5. Cantumkan referensi agar pembaca dapat menelusuri " +
-          "informasi lebih lanjut."
-      }
+  function cocokKategori(kartu, kategori) {
+    if (kategori === "semua") return true;
+    const meta = kartu.querySelector(".meta-berita");
+    const teks = ((meta ? meta.textContent : "") + " " + kartu.textContent).toLocaleLowerCase("id");
+    const peta = {
+      sejarah: ["sejarah","histor","arsip","peristiwa","tokoh","jejak"],
+      budaya: ["budaya","nilai","falsafah","ajaran","warisan","tradisi"],
+      persaudaraan: ["persaudaraan","pshwtm","setia hati","silat","ranting","cabang","latihan","tokoh"],
+      literasi: ["literasi","pustaka","buku","dokumen","dokumentasi","catatan","arsip"]
     };
-
-    // Pencarian dan filter kategori
-    function filterArticles() {
-      const query = searchInput.value.trim().toLowerCase();
-      let count = 0;
-
-      articles.forEach(article => {
-        const content = article.textContent.toLowerCase();
-        const category = article.dataset.category;
-
-        const matchesText = content.includes(query);
-        const matchesCategory =
-          !activeCategory || category === activeCategory;
-
-        const visible = matchesText && matchesCategory;
-
-        article.style.display = visible ? "" : "none";
-
-        if (visible) count++;
-      });
-
-      noResult.style.display = count === 0 ? "block" : "none";
+    return peta[kategori].some(k => teks.includes(k));
+  }
+  function terapkan() {
+    const q = pencarian.value.trim().toLocaleLowerCase("id");
+    const kartu = [...daftar.querySelectorAll(".kartu-berita")];
+    let jumlah = 0;
+    kartu.forEach(item => {
+      const tampil = (!q || item.textContent.toLocaleLowerCase("id").includes(q)) && cocokKategori(item, aktif);
+      item.hidden = !tampil;
+      if (tampil) jumlah++;
+    });
+    const lama = daftar.querySelector(".hasil-kosong-filter");
+    if (lama) lama.remove();
+    if (kartu.length && !jumlah) {
+      const kosong = document.createElement("div");
+      kosong.className = "empty-state hasil-kosong-filter";
+      kosong.textContent = "Tidak ada berita yang cocok. Coba kata kunci atau kategori lain.";
+      daftar.appendChild(kosong);
     }
-
-    searchInput.addEventListener("input", () => {
-      activeCategory = "";
-      filterArticles();
-    });
-
-    searchForm.addEventListener("submit", event => {
-      event.preventDefault();
-      activeCategory = "";
-      filterArticles();
-    });
-
-    // Klik kategori
-    document.querySelectorAll("[data-filter-category]")
-      .forEach(link => {
-        link.addEventListener("click", () => {
-          activeCategory = link.dataset.filterCategory;
-          searchInput.value = "";
-          filterArticles();
-        });
-      });
-
-    // Buka artikel
-    document.querySelectorAll("[data-article]")
-      .forEach(button => {
-        button.addEventListener("click", () => {
-          const key = button.dataset.article;
-          const material = materials[key];
-
-          if (!material) return;
-
-          detailTitle.textContent = material.title;
-          detailText.textContent = material.text;
-          detail.style.display = "block";
-
-          detail.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        });
-      });
-
-    // Tutup artikel
-    document.getElementById("closeDetail")
-      .addEventListener("click", () => {
-        detail.style.display = "none";
-      });
-  </script>
-
+    status.textContent = kartu.length ? `Menampilkan ${jumlah} dari ${kartu.length} berita` : "";
+  }
+  function pilih(kategori) {
+    aktif = kategori;
+    tombol.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.filter === kategori)));
+    terapkan();
+  }
+  tombol.forEach(b => b.addEventListener("click", () => pilih(b.dataset.filter)));
+  pencarian.addEventListener("input", terapkan);
+  document.querySelectorAll("[data-doc-filter]").forEach(a => a.addEventListener("click", () => pilih(a.dataset.docFilter)));
+  new MutationObserver(terapkan).observe(daftar, {childList:true, subtree:true});
+})();
+</script>
 </body>
 </html>
