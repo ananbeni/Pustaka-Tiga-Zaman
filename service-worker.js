@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "pustaka-tiga-zaman-v1";
+const CACHE_NAME = "pustaka-tiga-zaman-v2";
 
 const APP_FILES = [
   "/",
@@ -8,7 +8,7 @@ const APP_FILES = [
   "/favicon.png"
 ];
 
-// Memasang service worker
+// Memasang cache awal
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -19,13 +19,16 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Mengaktifkan service worker
+// Mengaktifkan versi baru
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys
-          .filter((key) => key.startsWith("pustaka-tiga-zaman-") && key !== CACHE_NAME)
+          .filter((key) =>
+            key.startsWith("pustaka-tiga-zaman-") &&
+            key !== CACHE_NAME
+          )
           .map((key) => caches.delete(key))
       );
     })
@@ -34,7 +37,7 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Mengambil halaman dan aset
+// Menangani halaman dan aset lokal
 self.addEventListener("fetch", (event) => {
   const request = event.request;
 
@@ -44,32 +47,44 @@ self.addEventListener("fetch", (event) => {
 
   if (url.origin !== self.location.origin) return;
 
-  event.respondWith(
-    fetch(request)
-      .then((response) => {
-        if (response.ok && response.type === "basic") {
-          const copy = response.clone();
+  const isNavigation = request.mode === "navigate";
 
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, copy);
-          });
+  const isStatic =
+    /\.(css|js|png|jpg|jpeg|webp|svg|ico|woff2?)$/i.test(url.pathname) ||
+    url.pathname === "/manifest.json";
+
+  if (!isNavigation && !isStatic) return;
+
+  event.respondWith(
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+
+      try {
+        const response = await fetch(request);
+
+        if (response.ok && response.type === "basic") {
+          await cache.put(request, response.clone());
         }
 
         return response;
-      })
-      .catch(async () => {
+      } catch (error) {
         const cached = await caches.match(request);
 
         if (cached) return cached;
 
-        if (request.mode === "navigate") {
-          return caches.match("/index.html");
+        if (isNavigation) {
+          const halamanUtama = await caches.match("/index.html");
+
+          if (halamanUtama) return halamanUtama;
         }
 
         return new Response("Konten tidak tersedia saat offline.", {
           status: 503,
-          headers: { "Content-Type": "text/plain; charset=utf-8" }
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8"
+          }
         });
-      })
+      }
+    })()
   );
 });
