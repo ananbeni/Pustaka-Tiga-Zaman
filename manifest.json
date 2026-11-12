@@ -12,6 +12,13 @@
   "background_color": "#111111",
   "theme_color": "#111111",
   "icons": [
+  {
+    "src": "/media/1000408170-1.png",
+    "sizes": "any",
+    "type": "image/png",
+    "purpose": "any"
+  }
+  ]
     {
       "src": "/favicon.png",
       "sizes": "any",
