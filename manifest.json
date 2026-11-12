@@ -1,0 +1,22 @@
+
+{
+  "id": "/",
+  "name": "PUSTAKA TIGA ZAMAN",
+  "short_name": "PUSTAKA 3 ZAMAN",
+  "description": "Pustaka Tiga Zaman PSHWTM: edukasi sejarah, nilai budaya, dan warisan generasi.",
+  "lang": "id-ID",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
