@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "id.my.pustakatigazaman.twa",
+        "sha256_cert_fingerprints": ["55:E4:B4:A4:23:48:94:2A:C4:79:AB:12:67:A8:47:4A:68:E8:1B:51:06:6C:41:62:92:C6:7E:1E:19:16:FC:FB"]
+      }
+    }]
