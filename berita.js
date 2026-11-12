@@ -5,10 +5,18 @@ async function muatBerita() {
 
   daftar.textContent = "Memuat berita...";
 
-  const API =
-    "https://api.github.com/repos/ananbeni/pustaka-tiga-zaman/contents/berita";
+  const DASAR =
+    "https://raw.githubusercontent.com/ananbeni/Pustaka-Tiga-Zaman/main/berita/";
 
-  // Gaya tampilan berita
+  const DAFTAR_FILE = [
+    "2026-10-18-konsolidasi-pbpsh-ke-hrdh-soewarno.md",
+    "2026-10-18-peran-bapak-ismadi-dalam-sejarah-pshw-tm.md",
+    "2026-10-18-uji-coba.md",
+    "2026-10-25-latber-pshwtm-ranting-wonokromo-syiar-persaudaraan-dan-pelestarian-ajaran.md",
+    "2026-11-07-rangkaian-menjelang-haul-hr-djimat-hendro-soewarno-pshwtm-cab-ponorogo.md",
+    "2026-11-09-pshwtm-ponorogo-perkuat-nilai-spiritual-dalam-rangkaian-haul-hr-djimat-hendro-soewarno.md"
+  ];
+
   if (!document.getElementById("gaya-berita")) {
     const style = document.createElement("style");
     style.id = "gaya-berita";
@@ -47,30 +55,8 @@ async function muatBerita() {
         color: #725b16;
         margin-bottom: 12px;
       }
-      .isi-artikel {
-        line-height: 1.8;
-        overflow-wrap: anywhere;
-      }
-      .isi-artikel img {
-        max-width: 100%;
-        height: auto;
-      }
-      .isi-artikel a {
-        color: #765700;
-        overflow-wrap: anywhere;
-      }
     `;
     document.head.appendChild(style);
-  }
-
-  function aman(teks) {
-    return String(teks || "").replace(/[&<>"']/g, karakter => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    })[karakter]);
   }
 
   function ambilField(teks, nama) {
@@ -79,155 +65,56 @@ async function muatBerita() {
       "m"
     );
     const cocok = teks.match(pola);
-    return cocok ? cocok[1].replace(/^['"]|['"]$/g, "") : "";
-  }
-
-  function ubahMarkdown(teks) {
-    let html = aman(teks);
-
-    // Gambar Markdown
-    html = html.replace(
-      /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g,
-      (semua, alt, url) => {
-        const sumber = url.startsWith("/")
-          ? url
-          : url.startsWith("https://") || url.startsWith("http://")
-            ? url
-            : "";
-        return sumber
-          ? `<img src="${aman(sumber)}" alt="${alt}" loading="lazy">`
-          : "";
-      }
-    );
-
-    // Tautan Markdown
-    html = html.replace(
-      /\[([^\]]+)\]\((https?:\/\/[^)\s]+|\/[^)\s]*)\)/g,
-      '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
-    );
-
-    html = html
-      .replace(/^### (.+)$/gm, "<h4>$1</h4>")
-      .replace(/^## (.+)$/gm, "<h3>$1</h3>")
-      .replace(/^# (.+)$/gm, "<h2>$1</h2>")
-      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.+?)\*/g, "<em>$1</em>");
-
-    return html
-      .split(/\n\s*\n/)
-      .map(paragraf => {
-        const isi = paragraf.trim();
-        if (!isi) return "";
-        if (/^<(h[2-4]|img|ul|ol|li|blockquote)\b/i.test(isi)) {
-          return isi;
-        }
-        return "<p>" + isi.replace(/\n/g, "<br>") + "</p>";
-      })
-      .join("");
+    return cocok
+      ? cocok[1].replace(/^['"]|['"]$/g, "")
+      : "";
   }
 
   try {
-    const respons = await fetch(API);
+    const hasilBerita = await Promise.all(
+      DAFTAR_FILE.map(async namaFile => {
+        const respons = await fetch(
+          DASAR + encodeURIComponent(namaFile)
+        );
 
-    if (!respons.ok) {
-      throw new Error("Daftar berita tidak bisa diakses.");
-    }
+        if (!respons.ok) {
+          console.warn("Berita gagal dimuat:", namaFile);
+          return null;
+        }
 
-    const files = await respons.json();
-const daftarFile = files
-  .filter(file => file.name.endsWith(".md"))
-  .sort((a, b) => {
-    const tanggalA = a.name.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || "";
-    const tanggalB = b.name.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || "";
+        const mentah = await respons.text();
 
-    if (tanggalA !== tanggalB) {
-      return tanggalB.localeCompare(tanggalA);
-    }
-
-    return b.name.localeCompare(a.name);
-  });
-
-
-    const artikel = await Promise.all(
-      daftarFile.map(async file => {
-        const hasil = await fetch(file.download_url);
-        if (!hasil.ok) return null;
-
-        const mentah = await hasil.text();
         const cocok = mentah.match(
           /^---\s*\r?\n([\s\S]*?)\r?\n---\s*(?:\r?\n|$)([\s\S]*)$/
         );
 
         if (!cocok) return null;
 
-        
+        const data = cocok[1];
 
-
-        
-const data = cocok[1];
-const isi = cocok[2].trim();
-
-let waktuUnggah = "";
-
-try {
-  const urlRiwayat =
-    "https://api.github.com/repos/ananbeni/pustaka-tiga-zaman/commits?path=" +
-    encodeURIComponent("berita/" + file.name) +
-    "&per_page=100";
-
-  const responsRiwayat = await fetch(urlRiwayat);
-
-  if (responsRiwayat.ok) {
-    const riwayat = await responsRiwayat.json();
-
-    if (Array.isArray(riwayat) && riwayat.length > 0) {
-  waktuUnggah =
-    riwayat[0]?.commit?.committer?.date ||
-    riwayat[0]?.commit?.author?.date ||
-    "";
-}
-  }
-} catch (error) {
-  console.warn("Waktu unggah tidak tersedia:", file.name);
-}
-
-return {
-  fileName: file.name,
-  judul: ambilField(data, "title") || file.name,
-  tanggal: ambilField(data, "date"),
-  kategori: ambilField(data, "category"),
-  ringkasan: ambilField(data, "description"),
-  gambar: ambilField(data, "image"),
-  waktuUnggah,
-  isi
-};
-
+        return {
+          fileName: namaFile,
+          judul: ambilField(data, "title") || namaFile,
+          tanggal: ambilField(data, "date"),
+          kategori: ambilField(data, "category"),
+          ringkasan: ambilField(data, "description"),
+          gambar: ambilField(data, "image")
+        };
       })
     );
 
+    const valid = hasilBerita
+      .filter(Boolean)
+      .sort((a, b) => {
+        return (b.tanggal || "").localeCompare(a.tanggal || "") ||
+          b.fileName.localeCompare(a.fileName);
+      });
+
     daftar.replaceChildren();
-
-    const valid = artikel.filter(Boolean);
-
-    
-valid.sort((a, b) => {
-  const waktuA = Date.parse(a.waktuUnggah) || 0;
-  const waktuB = Date.parse(b.waktuUnggah) || 0;
-
-  if (waktuA !== waktuB) {
-    return waktuB - waktuA;
-  }
-
-  return (b.tanggal || "").localeCompare(a.tanggal || "") ||
-    b.fileName.localeCompare(a.fileName);
-});
-
-
-
 
     if (valid.length === 0) {
       daftar.textContent =
-        "Belum ada artikel yang bisa ditampilkan. Periksa format file berita.";
+        "Berita belum dapat dimuat. Silakan coba kembali.";
       return;
     }
 
@@ -248,29 +135,32 @@ valid.sort((a, b) => {
       const isiKartu = document.createElement("div");
       isiKartu.className = "isi-kartu-berita";
 
-      
-const judul = document.createElement("h3");
-const tautanJudul = document.createElement("a");
+      const judul = document.createElement("h3");
+      const tautanJudul = document.createElement("a");
 
-tautanJudul.href =
-  "pratinjau/" +
-  encodeURIComponent(berita.fileName.replace(/\.md$/i, "")) +
-  "/";
+      tautanJudul.href =
+        "/pratinjau/" +
+        encodeURIComponent(
+          berita.fileName.replace(/\.md$/i, "")
+        ) + "/";
 
-tautanJudul.textContent = berita.judul;
-tautanJudul.style.cssText =
-  "color:#171717;text-decoration:none;font-size:1.2rem;";
+      tautanJudul.textContent = berita.judul;
+      tautanJudul.style.cssText =
+        "color:#171717;text-decoration:none;font-size:1.2rem;";
 
-judul.appendChild(tautanJudul);
-isiKartu.appendChild(judul);
-
+      judul.appendChild(tautanJudul);
+      isiKartu.appendChild(judul);
 
       const meta = document.createElement("div");
       meta.className = "meta-berita";
 
       let tanggalTampil = berita.tanggal;
+
       if (berita.tanggal) {
-        const tanggal = new Date(berita.tanggal + "T00:00:00");
+        const tanggal = new Date(
+          berita.tanggal + "T00:00:00"
+        );
+
         if (!Number.isNaN(tanggal.getTime())) {
           tanggalTampil = tanggal.toLocaleDateString("id-ID", {
             day: "numeric",
@@ -280,9 +170,11 @@ isiKartu.appendChild(judul);
         }
       }
 
-      meta.textContent = [tanggalTampil, berita.kategori]
-        .filter(Boolean)
-        .join(" • ");
+      meta.textContent = [
+        tanggalTampil,
+        berita.kategori
+      ].filter(Boolean).join(" • ");
+
       isiKartu.appendChild(meta);
 
       if (berita.ringkasan) {
@@ -291,36 +183,29 @@ isiKartu.appendChild(judul);
         isiKartu.appendChild(ringkasan);
       }
 
-      
-const baca = document.createElement("a");
+      const baca = document.createElement("a");
 
-baca.href =
-  "pratinjau/" +
-  encodeURIComponent(berita.fileName.replace(/\.md$/i, "")) +
-  "/";
+      baca.href =
+        "/pratinjau/" +
+        encodeURIComponent(
+          berita.fileName.replace(/\.md$/i, "")
+        ) + "/";
 
-baca.textContent = "Baca Selengkapnya →";
+      baca.textContent = "Baca Selengkapnya →";
+      baca.style.cssText =
+        "display:inline-block;margin-top:10px;color:#9A6B00;font-weight:bold;text-decoration:none;";
 
-baca.style.cssText =
-  "display:inline-block;margin-top:10px;color:#9A6B00;font-weight:bold;text-decoration:none;";
-
-isiKartu.appendChild(baca);
-
-      const isiArtikel = document.createElement("div");
-      isiArtikel.className = "isi-artikel";
-      
-      isiKartu.appendChild(isiArtikel);
+      isiKartu.appendChild(baca);
 
       kartu.appendChild(isiKartu);
       daftar.appendChild(kartu);
     });
+
   } catch (error) {
     console.error("Kesalahan memuat berita:", error);
     daftar.textContent =
-      "Berita belum dapat dimuat. Silakan periksa koneksi dan file berita.";
+      "Berita belum dapat dimuat. Silakan periksa koneksi internet.";
   }
 }
 
 muatBerita();
-
-

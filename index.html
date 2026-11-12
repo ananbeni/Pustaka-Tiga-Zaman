@@ -9,6 +9,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://pustakatigazaman.my.id/">
 <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="manifest" href="/manifest.json">
 <meta property="og:locale" content="id_ID">
 <meta property="og:site_name" content="PUSTAKA TIGA ZAMAN">
 <meta property="og:type" content="website">
@@ -194,5 +195,17 @@
   new MutationObserver(terapkan).observe(daftar, {childList:true, subtree:true});
 })();
 </script>
+  
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js")
+      .catch((error) => {
+        console.error("PWA Service Worker:", error);
+      });
+  });
+}
+</script>
+  
 </body>
 </html>
