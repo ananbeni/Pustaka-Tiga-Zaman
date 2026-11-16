@@ -8,7 +8,7 @@ async function muatBerita() {
   const API_BERITA =
     "https://api.github.com/repos/ananbeni/pustaka-tiga-zaman/contents/berita?ref=main";
 
-  // Membuat desain kartu berita jika belum tersedia.
+  // Membuat desain kartu berita.
   if (!document.getElementById("gaya-berita")) {
     const style = document.createElement("style");
     style.id = "gaya-berita";
@@ -56,7 +56,7 @@ async function muatBerita() {
     document.head.appendChild(style);
   }
 
-  // Membaca nilai dari front matter Markdown.
+  // Membaca front matter Markdown.
   function ambilField(teks, nama) {
     const pola = new RegExp(
       "^" + nama + ":\\s*(.*?)\\s*$",
@@ -70,7 +70,7 @@ async function muatBerita() {
       : "";
   }
 
-  // Membuat alamat gambar tetap dapat dibaca.
+  // Membuat alamat gambar.
   function alamatGambar(gambar) {
     if (!gambar) return "";
 
@@ -85,7 +85,7 @@ async function muatBerita() {
     return "/" + gambar;
   }
 
-  // Membuat URL halaman preview artikel.
+  // Membuat URL preview artikel.
   function alamatArtikel(namaFile) {
     const slug = namaFile.replace(/\.md$/i, "");
 
@@ -97,7 +97,7 @@ async function muatBerita() {
   }
 
   try {
-    // Mengambil daftar seluruh file dari folder berita GitHub.
+    // Mengambil daftar berita dari GitHub.
     const responsDaftar = await fetch(API_BERITA, {
       headers: {
         Accept: "application/vnd.github+json"
@@ -114,10 +114,10 @@ async function muatBerita() {
     const daftarFile = await responsDaftar.json();
 
     if (!Array.isArray(daftarFile)) {
-      throw new Error("Format daftar berita dari GitHub tidak valid.");
+      throw new Error("Format daftar berita tidak valid.");
     }
 
-    // Memilih semua file Markdown, tanpa daftar nama manual.
+    // Memilih seluruh file Markdown.
     const fileMarkdown = daftarFile.filter(file =>
       file.type === "file" &&
       file.name.toLowerCase().endsWith(".md")
@@ -128,7 +128,7 @@ async function muatBerita() {
       return;
     }
 
-    // Mengambil isi seluruh berita.
+    // Mengambil isi berita.
     const hasilBerita = await Promise.all(
       fileMarkdown.map(async file => {
         try {
@@ -147,10 +147,12 @@ async function muatBerita() {
 
           const mentah = await respons.text();
 
-          // Membaca front matter Markdown.
-          const cocok = mentah.replace(/^\uFEFF/, "").match(
-            /^---\s*\r?\n([\s\S]*?)\r?\n---\s*(?:\r?\n|$)([\s\S]*)$/
-          );
+          // Membaca front matter.
+          const cocok = mentah
+            .replace(/^\uFEFF/, "")
+            .match(
+              /^---\s*\r?\n([\s\S]*?)\r?\n---\s*(?:\r?\n|$)([\s\S]*)$/
+            );
 
           if (!cocok) {
             console.warn(
@@ -185,7 +187,7 @@ async function muatBerita() {
       })
     );
 
-    // Menghapus berita yang gagal dibaca dan mengurutkan terbaru.
+    // Menghapus berita gagal dan mengurutkan terbaru.
     const valid = hasilBerita
       .filter(Boolean)
       .sort((a, b) => {
