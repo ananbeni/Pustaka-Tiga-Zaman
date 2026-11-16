@@ -15,6 +15,8 @@ async function muatBerita() {
     "2026-10-25-latber-pshwtm-ranting-wonokromo-syiar-persaudaraan-dan-pelestarian-ajaran.md",
     "2026-11-07-rangkaian-menjelang-haul-hr-djimat-hendro-soewarno-pshwtm-cab-ponorogo.md",
     "2026-11-09-pshwtm-ponorogo-perkuat-nilai-spiritual-dalam-rangkaian-haul-hr-djimat-hendro-soewarno.md"
+
+"2026-11-17-haul-akbar-hr-djimat-hendro-soewarno.md",
   ];
 
   if (!document.getElementById("gaya-berita")) {
